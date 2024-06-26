@@ -1,0 +1,24 @@
+.dashboardContainer {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  width: 100%;
+}
+
+.dashboardContainer .leftPanel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 300px;
+}
+
+.dashboardContainer .rightPanel {
+  display: flex;
+  position: absolute;
+  right: 0px;
+  flex-direction: column;
+  height: 100%;
+  width: 300px;
+}

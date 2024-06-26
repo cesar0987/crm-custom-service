@@ -1,0 +1,4 @@
+.supliersContainer {
+  display: flex;
+  flex-wrap: wrap;
+}
