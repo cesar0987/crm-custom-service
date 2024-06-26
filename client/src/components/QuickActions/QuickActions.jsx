@@ -3,6 +3,7 @@ import createOrder from "../../Assets/createorder.png";
 import addSupplier from "../../Assets/addsupplier.png";
 import addProduct from "../../Assets/addproduct.png";
 import exportProduct from "../../Assets/export.png";
+import { Link } from "react-router-dom";
 import "./QuickActions.css";
 
 export const QuickActions = () => {
@@ -19,7 +20,7 @@ export const QuickActions = () => {
         </div>
         <div className="quickAction">
           <img src={addProduct} alt="Add Product Icon" />
-          <span>Add Product</span>
+          <Link to='/addProduct'>Add Product</Link>
         </div>
         <div className="quickAction">
           <img src={exportProduct} alt="Export Icon" />
