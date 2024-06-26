@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import Next from "Assets/Next.svg"
+import Previous from "Assets/Previous.svg"
 import "./inventory.css";
 import { AvatarSection, InventorySearchBar, QuickActions } from "components";
 
@@ -62,6 +64,7 @@ export const Inventory = () => {
   }
 
   const mostRecentActivity = products.slice(0, 4);
+  const totalPages = Math.ceil(products.length / productsPerPage);
 
   return (
     <div className="inventoryContainer">
@@ -88,20 +91,23 @@ export const Inventory = () => {
               ))}
             </tbody>
           </table>
+          <div className="pageInfo">
+            Page {currentPage} of {totalPages}
+          </div>
           <div className="pagination">
             <button
               onClick={() => paginate(currentPage - 1)}
               disabled={currentPage === 1}
             >
-              Previous
+              <img src={Previous} className="pages" />
             </button>
             <button
               onClick={() => paginate(currentPage + 1)}
               disabled={
-                currentPage === Math.ceil(products.length / productsPerPage)
+                currentPage === totalPages
               }
             >
-              Next
+              <img src={Next} className="pages" />
             </button>
           </div>
         </div>
