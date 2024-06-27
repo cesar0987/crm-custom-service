@@ -2,7 +2,6 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./AddProduct.css";
 
-
 export const AddProduct = ({ addProduct }) => {
   const [name, setName] = useState("");
   const [price, setPrice] = useState(0);
@@ -18,11 +17,11 @@ export const AddProduct = ({ addProduct }) => {
 
   const procesarForm = async (e) => {
     e.preventDefault();
-    const URL = 'http://localhost:8000/api/create/product';
+    const URL = "http://localhost:8000/api/create/product";
     const configuracion = {
-      method: 'POST',
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json'
+        "Content-Type": "application/json",
       },
       body: JSON.stringify({
         name,
@@ -33,9 +32,9 @@ export const AddProduct = ({ addProduct }) => {
         size,
         color,
         brand,
-        date
-      })
-    }
+        date,
+      }),
+    };
 
     const respuesta = await fetch(URL, configuracion);
     const datos = await respuesta.json();
@@ -57,54 +56,9 @@ export const AddProduct = ({ addProduct }) => {
       setError("");
       navigate("/inventory");
     }
-  }
+  };
 
   return (
-
-    <div>
-      <h1>Add Product</h1>
-      <form onSubmit={procesarForm}>
-        <div>
-          <label>Name:</label>
-          <input type="text" value={name} onChange={(e) => setName(e.target.value)} />
-        </div>
-        <div>
-          <label>Price:</label>
-          <input type="number" value={price} onChange={(e) => setPrice(e.target.value)} />
-        </div>
-        <div>
-          <label>Quantity:</label>
-          <input type="number" value={quantity} onChange={(e) => setQuantity(e.target.value)} />
-        </div>
-        <div>
-          <label>Size:</label>
-          <input type="text" value={size} onChange={(e) => setSize(e.target.value)} />
-        </div>
-        <div>
-          <label>Brand:</label>
-          <input type="text" value={brand} onChange={(e) => setBrand(e.target.value)} />
-        </div>
-        <div>
-          <label>Description:</label>
-          <input type="text" value={description} onChange={(e) => setDescription(e.target.value)} />
-        </div>
-        <div>
-          <label>Reference:</label>
-          <input type="text" value={ref} onChange={(e) => setRef(e.target.value)} />
-        </div>
-        <div>
-          <label>Color:</label>
-          <input type="text" value={color} onChange={(e) => setColor(e.target.value)} />
-        </div>
-        <div>
-          <label>Date:</label>
-          <input type="date" value={date} onChange={(e) => setDate(e.target.value)} />
-        </div>
-        <div>
-          <button type="submit">Add Product</button>
-        </div>
-      </form>
-      {error && <p>{error}</p>}
     <div className="addProductContainer">
       <h1 className="addProductTitle"> Add Product </h1>
       <form onSubmit={procesarForm} className="addProductForm">
@@ -113,63 +67,72 @@ export const AddProduct = ({ addProduct }) => {
           <input
             type="text"
             value={name}
-            onChange={(e) => setName(e.target.value)} />
+            onChange={(e) => setName(e.target.value)}
+          />
         </div>
         <div className="formGroup">
           <label> Price: </label>
           <input
             type="number"
             value={price}
-            onChange={(e) => setPrice(e.target.value)} />
+            onChange={(e) => setPrice(e.target.value)}
+          />
         </div>
         <div className="formGroup">
           <label> Quantity: </label>
           <input
             type="number"
             value={quantity}
-            onChange={(e) => setQuantity(e.target.value)} />
+            onChange={(e) => setQuantity(e.target.value)}
+          />
         </div>
         <div className="formGroup">
           <label> Size: </label>
           <input
             type="text"
             value={size}
-            onChange={(e) => setSize(e.target.value)} />
+            onChange={(e) => setSize(e.target.value)}
+          />
         </div>
         <div className="formGroup">
           <label> Brand: </label>
           <input
             type="text"
             value={brand}
-            onChange={(e) => setBrand(e.target.value)} />
+            onChange={(e) => setBrand(e.target.value)}
+          />
         </div>
         <div className="formGroup">
           <label> Description: </label>
           <input
             type="text"
             value={description}
-            onChange={(e) => setDescription(e.target.value)} />
+            onChange={(e) => setDescription(e.target.value)}
+          />
         </div>
         <div className="formGroup">
           <label> Reference: </label>
           <input
             type="text"
             value={ref}
-            onChange={(e) => setRef(e.target.value)} />
+            onChange={(e) => setRef(e.target.value)}
+          />
         </div>
         <div className="formGroup">
           <label> Color: </label>
           <input
             type="text"
             value={color}
-            onChange={(e) => setColor(e.target.value)} />
+            onChange={(e) => setColor(e.target.value)}
+          />
         </div>
         <div className="formGroup">
           <label> Date: </label>
           <input
             type="date"
             value={date}
-            onChange={(e) => setDate(e.target.value)} />
+            onChange={(e) => setDate(e.target.value)}
+          />
         </div>
         <div className="formGroup">
           <button type="submit"> Add Product </button>
@@ -178,4 +141,4 @@ export const AddProduct = ({ addProduct }) => {
       {error && <p className="errorMessage">{error}</p>}
     </div>
   );
-}
+};
