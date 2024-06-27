@@ -1,6 +1,7 @@
 const Product = require("../models/inventory.models");
 const moment = require('moment');
 
+
 module.exports.getAllProducts = (req, res) => {
   Product.find()
     .then((allProducts) => {
