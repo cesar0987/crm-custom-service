@@ -102,4 +102,4 @@ export const SalesOrder = () => {
     );
 };
 
-export default SalesOrder;
+
