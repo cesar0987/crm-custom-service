@@ -1,6 +1,7 @@
 .QuickActions {
   display: flex;
   border: 1px solid gray;
+  border-top: none !important;
   justify-content: center;
   width: 300px;
   height: 261px;

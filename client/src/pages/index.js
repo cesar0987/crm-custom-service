@@ -7,3 +7,4 @@ export { Reports } from "./Reports/reports";
 export { SalesOrder } from "./salesorder/salesorder";
 export { Settings } from "./settings/settings";
 export { Supliers } from "./supliers/supliers";
+export { Home } from "./home/home";
