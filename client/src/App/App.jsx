@@ -15,7 +15,7 @@ import {
 import { Layout } from "components";
 import { AddProduct } from "components";
 
-const App = () =>{
+function App () {
   const [products, setProducts] = useState([]);
 
   const addProduct = (product) => {
