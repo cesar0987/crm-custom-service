@@ -1,6 +1,6 @@
 import "./App.css";
 import { Routes, Route } from "react-router-dom";
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import {
   Dashboard,
   Help,
@@ -11,11 +11,16 @@ import {
   SalesOrder,
   Settings,
   Supliers,
+  Home
 } from "pages";
 import { Layout } from "components";
 import { AddProduct } from "components";
 
 function App () {
+  const App = () => {
+  useEffect(() => {
+    document.title = "CRM";
+  });
   const [products, setProducts] = useState([]);
 
   const addProduct = (product) => {
@@ -25,7 +30,8 @@ function App () {
     <div className="App">
       <Layout>
         <Routes>
-          <Route path="/" element={<Dashboard />} />
+          <Route path="/" element={<Home />} />
+          <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/inventory" element={<Inventory />} />
           <Route path="/salesorder" element={<SalesOrder/>} />
           <Route path="/supliers" element={<Supliers />} />
@@ -35,11 +41,13 @@ function App () {
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="*" element={<Dashboard />} />
+
           <Route path="/addProduct" element={<AddProduct addProduct={addProduct}/>} />
+
         </Routes>
       </Layout>
     </div>
   );
-}
+};
 
 export default App;

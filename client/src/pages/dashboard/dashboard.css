@@ -8,10 +8,17 @@
 .dashboardContainer .leftPanel {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
   height: 100%;
   width: 300px;
+}
+
+.dashboardContainer .leftPanel .salesSumary {
+  display: flex;
+  flex-direction: row;
+  height: 50px;
+  width: 720px;
+  justify-content: space-between;
+  border: 1px solid #e0e0e0;
 }
 
 .dashboardContainer .rightPanel {
@@ -21,4 +28,10 @@
   flex-direction: column;
   height: 100%;
   width: 300px;
+}
+
+#salesChart {
+  height: 300px;
+  width: 100%;
+  border: 1px solid #e0e0e0;
 }
