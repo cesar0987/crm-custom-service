@@ -11,6 +11,7 @@ import {
   Settings,
   Supliers,
 } from "pages";
+import SuplierForm from "pages/supliersForm/SuplierForm";
 import { Layout } from "components";
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="*" element={<Dashboard />} />
+          <Route path="/agregar/supliers" element={<SuplierForm />} />
         </Routes>
       </Layout>
 
