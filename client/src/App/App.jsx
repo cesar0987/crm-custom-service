@@ -11,6 +11,7 @@ import {
   SalesOrder,
   Settings,
   Supliers,
+  Home
 } from "pages";
 import { Layout } from "components";
 import { AddProduct } from "components";
@@ -25,7 +26,8 @@ const App = () =>{
     <div className="App">
       <Layout>
         <Routes>
-          <Route path="/" element={<Dashboard />} />
+          <Route path="/" element={<Home />} />
+          <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/inventory" element={<Inventory />} />
           <Route path="/salesorder" element={<SalesOrder />} />
           <Route path="/supliers" element={<Supliers />} />
