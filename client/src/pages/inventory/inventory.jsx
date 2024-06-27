@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import Next from "Assets/Next.svg"
+import Previous from "Assets/Previous.svg"
 import "./inventory.css";
 import { AvatarSection, InventorySearchBar, QuickActions } from "components";
 
@@ -34,6 +36,8 @@ export const Inventory = () => {
     fetchProducts();
   }, []);
 
+
+  //
   const indexOfLastProduct = currentPage * productsPerPage;
   const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
   const currentProducts = products.slice(
@@ -62,6 +66,7 @@ export const Inventory = () => {
   }
 
   const mostRecentActivity = products.slice(0, 4);
+  const totalPages = Math.ceil(products.length / productsPerPage);
 
   return (
     <div className="inventoryContainer">
@@ -88,20 +93,23 @@ export const Inventory = () => {
               ))}
             </tbody>
           </table>
+          <div className="pageInfo">
+            {currentPage} / {totalPages}
+          </div>
           <div className="pagination">
             <button
               onClick={() => paginate(currentPage - 1)}
               disabled={currentPage === 1}
             >
-              Previous
+              <img src={Previous} className="pages" alt="Previous" />
             </button>
             <button
               onClick={() => paginate(currentPage + 1)}
               disabled={
-                currentPage === Math.ceil(products.length / productsPerPage)
+                currentPage === totalPages
               }
             >
-              Next
+              <img src={Next} className="pages" alt="Next" />
             </button>
           </div>
         </div>
@@ -113,22 +121,24 @@ export const Inventory = () => {
           <span>
             <b>Recent Activity</b>
           </span>
-          <table>
-            <thead>
-              <tr>
-                <th>Action</th>
-                <th>Date</th>
-              </tr>
-            </thead>
-            <tbody>
-              {mostRecentActivity.map((product) => (
-                <tr key={product.ref}>
-                  <td>{product.name}</td>
-                  <td>{formatDate(product.date)}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+          <div className="actionDate">
+              <div className="details">
+                <h2 className="titles"> Action </h2>
+                {mostRecentActivity.map((product) => (
+                    <p key={product.ref} className="productsDetails">
+                      <h3 className="nameDetail">{product.name}</h3>
+                    </p>
+                  ))}
+              </div>
+              <div className="details">
+                <h2 className="titles"> Date </h2>
+                {mostRecentActivity.map((product) => (
+                <p key={product.ref} className="productsDetails">
+                  <h3 className="nameDetail">{formatDate(product.date)}</h3>
+                </p>
+                ))}
+              </div>
+          </div>
         </div>
       </div>
     </div>

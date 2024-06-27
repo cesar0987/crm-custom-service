@@ -1,5 +1,3 @@
-
-
 export const SalesOrder = () => {
     return (
         <div>
