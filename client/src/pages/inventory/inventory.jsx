@@ -36,6 +36,8 @@ export const Inventory = () => {
     fetchProducts();
   }, []);
 
+
+  //
   const indexOfLastProduct = currentPage * productsPerPage;
   const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
   const currentProducts = products.slice(

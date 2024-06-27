@@ -1,6 +1,7 @@
 import "./App.css";
 import { Routes, Route } from "react-router-dom";
 import { useState } from "react";
+import { useEffect } from "react";
 import {
   Dashboard,
   Help,
@@ -16,7 +17,10 @@ import {
 import { Layout } from "components";
 import { AddProduct } from "components";
 
-const App = () =>{
+const App = () => {
+  useEffect(() => {
+    document.title = "CRM";
+  });
   const [products, setProducts] = useState([]);
 
   const addProduct = (product) => {
@@ -37,11 +41,14 @@ const App = () =>{
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="*" element={<Dashboard />} />
-          <Route path="/addProduct" element={<AddProduct addProduct={addProduct}/>} />
+          <Route
+            path="/addProduct"
+            element={<AddProduct addProduct={addProduct} />}
+          />
         </Routes>
       </Layout>
     </div>
   );
-}
+};
 
 export default App;
