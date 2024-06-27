@@ -1,4 +1,3 @@
-
 export const Settings = () => {
     return (
         <div className="settingsContainer">

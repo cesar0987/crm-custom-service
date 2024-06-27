@@ -3,7 +3,7 @@
 .navContainer {
   display: flex;
   width: 220px;
-  height: 837px;
+  height: 100%;
   padding: 32px 12px;
   flex-wrap: wrap;
   flex-direction: column;

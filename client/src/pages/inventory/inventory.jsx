@@ -92,14 +92,14 @@ export const Inventory = () => {
             </tbody>
           </table>
           <div className="pageInfo">
-            Page {currentPage} of {totalPages}
+            {currentPage} / {totalPages}
           </div>
           <div className="pagination">
             <button
               onClick={() => paginate(currentPage - 1)}
               disabled={currentPage === 1}
             >
-              <img src={Previous} className="pages" />
+              <img src={Previous} className="pages" alt="Previous" />
             </button>
             <button
               onClick={() => paginate(currentPage + 1)}
@@ -107,7 +107,7 @@ export const Inventory = () => {
                 currentPage === totalPages
               }
             >
-              <img src={Next} className="pages" />
+              <img src={Next} className="pages" alt="Next" />
             </button>
           </div>
         </div>
@@ -119,22 +119,24 @@ export const Inventory = () => {
           <span>
             <b>Recent Activity</b>
           </span>
-          <table>
-            <thead>
-              <tr>
-                <th>Action</th>
-                <th>Date</th>
-              </tr>
-            </thead>
-            <tbody>
-              {mostRecentActivity.map((product) => (
-                <tr key={product.ref}>
-                  <td>{product.name}</td>
-                  <td>{formatDate(product.date)}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+          <div className="actionDate">
+              <div className="details">
+                <h2 className="titles"> Action </h2>
+                {mostRecentActivity.map((product) => (
+                    <p key={product.ref} className="productsDetails">
+                      <h3 className="nameDetail">{product.name}</h3>
+                    </p>
+                  ))}
+              </div>
+              <div className="details">
+                <h2 className="titles"> Date </h2>
+                {mostRecentActivity.map((product) => (
+                <p key={product.ref} className="productsDetails">
+                  <h3 className="nameDetail">{formatDate(product.date)}</h3>
+                </p>
+                ))}
+              </div>
+          </div>
         </div>
       </div>
     </div>
