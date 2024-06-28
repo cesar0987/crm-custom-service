@@ -20,6 +20,6 @@ module.exports.createSupliers = (req, res) => {
     })
     .catch((err) => {
       console.error("Error creating supliers:", err);
-      res.status(500).json(err);
+      res.status(400).json(err);
     });
 };

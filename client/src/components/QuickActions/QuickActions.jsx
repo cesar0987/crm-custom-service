@@ -4,6 +4,7 @@ import addSupplier from "../../Assets/addsupplier.png";
 import addProduct from "../../Assets/addproduct.png";
 import exportProduct from "../../Assets/export.png";
 import "./QuickActions.css";
+import { Link } from "react-router-dom";
 
 export const QuickActions = () => {
   return (
@@ -15,7 +16,7 @@ export const QuickActions = () => {
         </div>
         <div className="quickAction">
           <img src={addSupplier} alt="Add Supplier Icon" />
-          <span>Add Supplier</span>
+          <Link to='/agregar/supliers'>Add Supplier</Link>
         </div>
         <div className="quickAction">
           <img src={addProduct} alt="Add Product Icon" />
