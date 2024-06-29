@@ -14,6 +14,7 @@ export const QuickActions = () => {
         <div className="quickAction">
           <img src={createOrder} alt="Create Order Icon" />
           <span>Create Order</span>
+          <h1>Test</h1>
         </div>
         <div className="quickAction">
           <img src={addSupplier} alt="Add Supplier Icon" />
@@ -21,7 +22,7 @@ export const QuickActions = () => {
         </div>
         <div className="quickAction">
           <img src={addProduct} alt="Add Product Icon" />
-          <Link to='/addProduct'>Add Product</Link>
+          <Link to="/addProduct">Add Product</Link>
         </div>
         <div className="quickAction">
           <img src={exportProduct} alt="Export Icon" />
