@@ -1,4 +1,38 @@
 .supliersContainer {
-  display: flex;
-  flex-wrap: wrap;
+  width: 100%;
+  margin: 0 auto;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  background-color: #f9f9f9;
+}
+
+.supliersContainer h1 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.supliersContainer table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.supliersContainer th, .supliersContainer td {
+  padding: 10px;
+  text-align: left;
+  border: 1px solid #ddd;
+}
+
+.supliersContainer th {
+  background-color: #2c7bc9;
+  color: white;
+}
+
+.supliersContainer tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+.supliersContainer tr:hover {
+  background-color: #ddd;
 }

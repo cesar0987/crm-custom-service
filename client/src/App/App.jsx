@@ -13,6 +13,7 @@ import {
   Supliers,
   Home,
 } from "pages";
+import SuplierForm from "pages/supliersForm/SuplierForm";
 import { Layout } from "components";
 import { AddProduct } from "components";
 
@@ -34,6 +35,7 @@ const App = () => {
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
 
+
               <Route path="/dashboard" element={<Dashboard />} />
               <Route path="/inventory" element={<Inventory />} />
               <Route path="/salesorder" element={<SalesOrder />} />
@@ -43,6 +45,15 @@ const App = () => {
               <Route path="/settings" element={<Settings />} />
               <Route path="*" element={<Dashboard />} />
               <Route path="/addProduct" element={<AddProduct addProduct={addProduct} />} />
+
+          <Route path="*" element={<Dashboard />} />
+
+          <Route path="/agregar/supliers" element={<SuplierForm />} />
+
+          <Route
+            path="/addProduct"
+            element={<AddProduct addProduct={addProduct} />}
+          />
         </Routes>
       </Layout>
     </div>
