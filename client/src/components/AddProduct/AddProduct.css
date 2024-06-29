@@ -1,0 +1,68 @@
+.addProductContainer {
+    width: 40%;
+    margin-top: 30px !important;
+    margin-bottom: 30px !important;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ced4d9;
+    border-radius: 10px;
+    background-color: #f7f9fc;
+}
+
+.addProductTitle {
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.addProductForm {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.formGroup {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.formGroup label {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.formGroup input {
+    padding: 10px;
+    border: 1px solid #ced4d9;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.formGroup button {
+    width: 20%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #2c7bc9;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    display: flex;
+    justify-content: center;
+    align-self: center;
+}
+
+.formGroup button:hover {
+    background-color: #1b5a89;
+}
+
+.errorMessage {
+    color: red;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 10px;
+}
