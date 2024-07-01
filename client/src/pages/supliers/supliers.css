@@ -36,3 +36,15 @@
 .supliersContainer tr:hover {
   background-color: #ddd;
 }
+
+.btn{
+  background-color: #2c7bc9;
+  color: white;
+  border: none;
+  padding: 5px 5px;
+  border-radius: 5px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 5px;
+}

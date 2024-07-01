@@ -43,9 +43,9 @@ export const Supliers = () => {
   return (
     <div className="supliersContainer">
       <h1>Supliers</h1>
-      <div>
+      <div >
         <Link to='/agregar/supliers'>
-        <button>
+        <button className='btn'>
           Add Supliers
         </button>
         </Link>
