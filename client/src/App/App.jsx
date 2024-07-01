@@ -1,7 +1,6 @@
 import "./App.css";
 import { Routes, Route } from "react-router-dom";
-import { useState } from "react";
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 import {
   Dashboard,
   Help,
@@ -27,20 +26,26 @@ const App = () => {
   const addProduct = (product) => {
     setProducts([...products, product]);
   };
+  
   return (
     <div className="App">
-      <Layout>
+      <Layout >
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/inventory" element={<Inventory />} />
-          <Route path="/salesorder" element={<SalesOrder />} />
-          <Route path="/supliers" element={<Supliers />} />
-          <Route path="/reports" element={<Reports />} />
-          <Route path="/help" element={<Help />} />
-          <Route path="/settings" element={<Settings />} />
+          <Route path="/welcome" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
+
+
+              <Route path="/dashboard" element={<Dashboard />} />
+              <Route path="/inventory" element={<Inventory />} />
+              <Route path="/salesorder" element={<SalesOrder />} />
+              <Route path="/supliers" element={<Supliers />} />
+              <Route path="/reports" element={<Reports />} />
+              <Route path="/help" element={<Help />} />
+              <Route path="/settings" element={<Settings />} />
+              <Route path="*" element={<Dashboard />} />
+              <Route path="/addProduct" element={<AddProduct addProduct={addProduct} />} />
+
           <Route path="*" element={<Dashboard />} />
 
           <Route path="/agregar/supliers" element={<SuplierForm />} />
@@ -49,7 +54,6 @@ const App = () => {
             path="/addProduct"
             element={<AddProduct addProduct={addProduct} />}
           />
-
         </Routes>
       </Layout>
     </div>

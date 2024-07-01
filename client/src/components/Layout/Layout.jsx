@@ -6,7 +6,8 @@ import { Footer } from "../Footer/Footer";
 
 export const Layout = ({ children }) => {
   const { pathname } = useLocation();
-  if (pathname === "/login" || pathname === "/register") {
+
+  if (pathname === "/login" || pathname === "/register" || pathname === "/welcome") {  
     return children;
   } else {
     return (
