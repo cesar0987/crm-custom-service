@@ -12,10 +12,9 @@ import {
   Settings,
   Supliers,
   Home,
-  SuplierForm,
 } from "pages";
 import { Layout } from "components";
-import { AddProduct } from "components";
+import { AddProduct, SuplierForm } from "components";
 
 const App = () => {
   useEffect(() => {
@@ -34,7 +33,7 @@ const App = () => {
           <Route path="/welcome" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
-
+          <Route path="/agregar/supliers" element={<SuplierForm />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/inventory" element={<Inventory />} />
           <Route path="/salesorder" element={<SalesOrder />} />
@@ -47,15 +46,7 @@ const App = () => {
             path="/addProduct"
             element={<AddProduct addProduct={addProduct} />}
           />
-
           <Route path="*" element={<Dashboard />} />
-
-          <Route path="/agregar/supliers" element={<SuplierForm />} />
-
-          <Route
-            path="/addProduct"
-            element={<AddProduct addProduct={addProduct} />}
-          />
         </Routes>
       </Layout>
     </div>
