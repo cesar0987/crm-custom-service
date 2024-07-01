@@ -69,7 +69,7 @@ const SuplierForm = () => {
     return (
         <> 
          <div className="suplierCont">
-            <h1 className="titulo"> Add Supliers</h1>
+            <h1 className="titulo"> Add Suppliers</h1>
             <form onSubmit={agregarSuplier} className="supplier-form">
                 <p>
                     <label>Name</label><br/>
