@@ -36,3 +36,8 @@ const supliersSchema = new mongoose.Schema({
 const Supliers = mongoose.model("Supliers", supliersSchema);
 
 module.exports = Supliers;
+<<<<<<< Updated upstream
+=======
+
+
+>>>>>>> Stashed changes

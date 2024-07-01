@@ -1,4 +1,8 @@
 import { useState } from "react";
+<<<<<<< Updated upstream
+=======
+import { useNavigate } from "react-router-dom";
+>>>>>>> Stashed changes
 import axios from 'axios';
 import '../supliersForm/SuplierForm.css';
 
@@ -65,7 +69,7 @@ const SuplierForm = () => {
             setErrors({ api: "An error occurred while adding the supplier. Please try again." });
         });
     };
-
+}
     return (
         <> 
          <div className="suplierCont">
@@ -151,6 +155,57 @@ const SuplierForm = () => {
                 {errors.api && <span className="error">{errors.api}</span>}
             </form>
          </div>
+<<<<<<< Updated upstream
+=======
+            
+        })
+        .catch(err => console.log(err));
+    }
+
+    return(
+        <> 
+         <div >
+            <h1> Agregar Proveedor </h1>
+            <form onSubmit={agregarSuplier} className="supplier-form">
+            <p>
+                <label>Name</label><br/>
+                <input type="text" name= "name" placeholder="Nombre"
+                onChange={(e) => setName(e.target.value)} value={name} />
+            </p>
+            <p>
+                <label>Ruc</label><br/>
+                <input type="text" name= "ruc" placeholder="RUC"
+                onChange={(e) => setRuc(e.target.value)} value={ruc} />
+            </p>
+            <p>
+            <label>Phone</label><br/>
+                <input type="number" name="phone" placeholder="Telefono" 
+                onChange={(e) => setPhone(e.target.value)} value={phone} />
+            </p>
+            <p>
+            <label>Adress</label><br/>
+                <input type="text" name="address" placeholder="Direccion" 
+                onChange={(e) => setAddress(e.target.value)} value={address} />
+            </p>
+            <p>
+            <label>Mail</label><br/>
+                <input type="text" name="mail" placeholder="Correo electronico" 
+                onChange={(e) => setMail(e.target.value)} value={mail} />
+            </p>
+            <p>
+            <label>Postal Code</label><br/>
+                <input type="number" name="postalCode" placeholder="Codigo Postal" 
+                onChange={(e) => setPostalCode(e.target.value)} value={postalCode} />
+            </p>
+            <p>
+            <label>Sitio wep</label><br/>
+                <input type="text"  name="sitioWep" placeholder ="Sitio Wep" 
+                onChange={(e) => setSitioWep(e.target.value)} value={sitioWep} />
+            </p>
+            <button>Add</button>
+            </form>
+            </div>
+>>>>>>> Stashed changes
         </>
     );
 }

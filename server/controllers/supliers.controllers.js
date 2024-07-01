@@ -11,7 +11,7 @@ module.exports.getAllSupliers = (req, res) => {
       res.status(500).json(err);
     });
 };
-
+}
 module.exports.createSupliers = async (req, res) => {
   try {
     const { name, ruc, phone, address, mail, postalCode, sitioWep } = req.body;
@@ -39,4 +39,19 @@ module.exports.createSupliers = async (req, res) => {
     console.error("Error creating supplier:", err);
     res.status(400).json(err);
   }
+<<<<<<< Updated upstream
+=======
+}
+module.exports.createSupliers = (req, res) => {
+  Supliers.create(req.body)
+    .then((newSupliers) => {
+      console.log("New Supliers:", newSupliers);
+      res.json(newSupliers);
+    })
+    .catch((err) => {
+      console.error("Error creating supliers:", err);
+      res.status(500).json(err);
+    });
+  
+>>>>>>> Stashed changes
 };
