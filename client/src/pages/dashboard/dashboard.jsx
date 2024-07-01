@@ -22,6 +22,7 @@ export const Dashboard = () => {
         <div className="salesReport">
           <span>
             <b>Sales Report</b>
+            <p></p>
           </span>
           <span className="barChartDashboard">
             <BarChart />
