@@ -12,8 +12,8 @@ import {
   Settings,
   Supliers,
   Home,
+  SuplierForm,
 } from "pages";
-import SuplierForm from "pages/supliersForm/SuplierForm";
 import { Layout } from "components";
 import { AddProduct } from "components";
 
@@ -26,25 +26,27 @@ const App = () => {
   const addProduct = (product) => {
     setProducts([...products, product]);
   };
-  
+
   return (
     <div className="App">
-      <Layout >
+      <Layout>
         <Routes>
           <Route path="/welcome" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
 
-
-              <Route path="/dashboard" element={<Dashboard />} />
-              <Route path="/inventory" element={<Inventory />} />
-              <Route path="/salesorder" element={<SalesOrder />} />
-              <Route path="/supliers" element={<Supliers />} />
-              <Route path="/reports" element={<Reports />} />
-              <Route path="/help" element={<Help />} />
-              <Route path="/settings" element={<Settings />} />
-              <Route path="*" element={<Dashboard />} />
-              <Route path="/addProduct" element={<AddProduct addProduct={addProduct} />} />
+          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/inventory" element={<Inventory />} />
+          <Route path="/salesorder" element={<SalesOrder />} />
+          <Route path="/supliers" element={<Supliers />} />
+          <Route path="/reports" element={<Reports />} />
+          <Route path="/help" element={<Help />} />
+          <Route path="/settings" element={<Settings />} />
+          <Route path="*" element={<Dashboard />} />
+          <Route
+            path="/addProduct"
+            element={<AddProduct addProduct={addProduct} />}
+          />
 
           <Route path="*" element={<Dashboard />} />
 
