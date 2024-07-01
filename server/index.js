@@ -1,3 +1,4 @@
+require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
 const Inventory = require("./routes/inventory.routes");
@@ -19,7 +20,6 @@ Inventory(app);
 Supliers(app);
 
 Auth(app);
-
 
 app.listen(port, () => {
   console.log(`Server is running on port: ${port}`);
