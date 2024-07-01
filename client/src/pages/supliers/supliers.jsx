@@ -1,5 +1,6 @@
 import '../supliers/supliers.css';
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 
 export const Supliers = () => {
   const [supliers, setSuplier] = useState([]);
@@ -42,6 +43,14 @@ export const Supliers = () => {
   return (
     <div className="supliersContainer">
       <h1>Supliers</h1>
+      <div>
+        <Link to='/agregar/supliers'>
+        <button>
+          Add Supliers
+        </button>
+        </Link>
+
+      </div>
       <table>
         <thead>
           <tr>
