@@ -68,8 +68,8 @@ const SuplierForm = () => {
 
     return (
         <> 
-         <div>
-            <h1> Agregar Proveedor </h1>
+         <div className="suplierCont">
+            <h1 className="titulo"> Add Supliers</h1>
             <form onSubmit={agregarSuplier} className="supplier-form">
                 <p>
                     <label>Name</label><br/>
@@ -147,7 +147,7 @@ const SuplierForm = () => {
                         value={sitioWep} 
                     />
                 </p>
-                <button>Add</button>
+                <button>Add Supliers</button>
                 {errors.api && <span className="error">{errors.api}</span>}
             </form>
          </div>

@@ -1,6 +1,6 @@
 const Supliers = require("../models/supliers.models");
 
-module.exports.getAllSupliers= (req, res) => {
+module.exports.getAllSupliers = (req, res) => {
   Supliers.find()
     .then((allSupliers) => {
       console.log("All Supliers:", allSupliers);
@@ -12,14 +12,31 @@ module.exports.getAllSupliers= (req, res) => {
     });
 };
 
-module.exports.createSupliers = (req, res) => {
-  Supliers.create(req.body)
-    .then((newSupliers) => {
-      console.log("New Supliers:", newSupliers);
-      res.json(newSupliers);
-    })
-    .catch((err) => {
-      console.error("Error creating supliers:", err);
-      res.status(400).json(err);
+module.exports.createSupliers = async (req, res) => {
+  try {
+    const { name, ruc, phone, address, mail, postalCode, sitioWep } = req.body;
+
+    // Verificar si ya existe proveedor con el mismo RUC
+    const existingSupplier = await Supliers.findOne({ ruc });
+    if (existingSupplier) {
+      return res.status(400).json({ error: "Supplier with this RUC already exists" });
+    }
+
+    // Crear el nuevo proveedor
+    const newSuplier = await Supliers.create({
+      name,
+      ruc,
+      phone,
+      address,
+      mail,
+      postalCode,
+      sitioWep,
     });
+
+    console.log("New Supplier:", newSuplier);
+    res.json(newSuplier);
+  } catch (err) {
+    console.error("Error creating supplier:", err);
+    res.status(400).json(err);
+  }
 };

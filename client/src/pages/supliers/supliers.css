@@ -41,10 +41,21 @@
   background-color: #2c7bc9;
   color: white;
   border: none;
-  padding: 5px 5px;
-  border-radius: 5px;
+  padding: 9px;
+  border-radius: 7px;
   cursor: pointer;
   display: flex;
   justify-content: center;
   margin-bottom: 5px;
+}
+
+.btn:hover {
+  background-color: #1b5a89;
+}
+
+.error {
+  color: red;
+  font-weight: bold;
+  text-align: center;
+  margin-top: 10px;
 }
