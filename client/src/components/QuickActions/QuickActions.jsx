@@ -5,6 +5,7 @@ import addProduct from "../../Assets/addproduct.png";
 import exportProduct from "../../Assets/export.png";
 import { Link } from "react-router-dom";
 import "./QuickActions.css";
+import { Link } from "react-router-dom";
 
 export const QuickActions = () => {
   return (
