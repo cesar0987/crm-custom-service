@@ -1,6 +1,4 @@
 const Product = require("../models/inventory.models");
-const moment = require('moment');
-
 
 module.exports.getAllProducts = (req, res) => {
   Product.find()
@@ -51,4 +49,19 @@ module.exports.createProduct = (req, res) => {
       console.error("Error creating product:", err);
       res.status(500).json(err);
     });
+};
+
+module.exports.updateQuantity = async (req, res) => {
+  const updatedProducts = req.body;
+  try {
+      const promises = updatedProducts.map(product =>
+          Product.findByIdAndUpdate(product._id, { quantity: product.quantity }, { new: true })
+      );
+      const results = await Promise.all(promises);
+      const allProducts = await Product.find(); // Obtener todos los productos actualizados
+      res.json(allProducts);
+  } catch (err) {
+      console.error("Error updating products:", err);
+      res.status(500).json(err);
+  }
 };
