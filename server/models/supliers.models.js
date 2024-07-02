@@ -11,7 +11,7 @@ const supliersSchema = new mongoose.Schema({
         required: [true, "RUC is required"],
     },
     phone: {
-        type: Number,
+        type: String, // Assuming phone number is stored as a string
         required: [true, "Phone is required"],
     },
     address: {
@@ -25,7 +25,7 @@ const supliersSchema = new mongoose.Schema({
         match: [/.+\@.+\..+/, "Please fill a valid email address"],
     },
     postalCode: {
-        type: Number,
+        type: String, // Assuming postal code is stored as a string
         required: [true, "Postal code is required"],
     },
     sitioWep: {
@@ -36,33 +36,4 @@ const supliersSchema = new mongoose.Schema({
 const Supliers = mongoose.model("Supliers", supliersSchema);
 
 module.exports = Supliers;
-        },
-    ruc: {
-        type: String,
-        required: [true, "Ruc is required "],
-    },
-    phone:{
-        type: Number,
-        required: [true, "phone is required"],
-    },
-    address: {
-        type: String,
-        required: [true, "address is required"],
-        minlength: [5, "address must be at least 5 characters long"],
-    },
-    mail:{
-        type: String,
-        required: [true, "mail is required"],
-    },
-    postalCode:{
-        type: Number,
-        required: [true, "Postal code is required"],
-    },
-    sitioWep:{
-        type: String
-    }
-}) 
 
-const Supliers = mongoose.model("Supliers", supliersSchema);
-
-module.exports = Supliers;
