@@ -1,13 +1,25 @@
 import '../supliers/Supliers.css'
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import axios from 'axios';
 
-
-export const Supliers = () => {
+export const Supliers = ({removeFromDom}) => {
   const [supliers, setSuplier] = useState([]);
   const [loaded, setLoaded] = useState(true);
   const [error, setError] = useState(null);
 
+  const deleteSupliers = (suplierId)=>{
+    axios.delete('http://localhost:8000/api/eliminar/supliers/' +suplierId)
+    .then(res =>{
+      if(removeFromDom){
+        removeFromDom(suplierId);
+      }else{
+        setSuplier(supliers.filter(suplier => suplier._id !== suplierId));
+      }
+    })
+    .catch(error => console.error('Error al eliminar proveedor', error))
+  }
+    
   useEffect(() => {
     const fetchSupliers = async () => {
       try {
@@ -28,6 +40,7 @@ export const Supliers = () => {
       } finally {
         setLoaded(false);
       }
+
     };
 
     fetchSupliers();
@@ -77,13 +90,16 @@ export const Supliers = () => {
               <td>{suplier.mail}</td>
               <td>{suplier.postalCode}</td>
               <td>{suplier.sitioWep}</td>
-              <Link to='/actulizar/supliers/'>
+              <td>
+              <Link to={`/actualizar/supliers/${suplier._id}`}>
               <button>edit</button>
               </Link>
               <div>
-
-                <button>Delete</button>
+                <button onClick={()=> deleteSupliers(suplier._id)}>
+                  Delete
+                </button>
               </div>
+              </td>
             </tr>
           ))}
         </tbody>

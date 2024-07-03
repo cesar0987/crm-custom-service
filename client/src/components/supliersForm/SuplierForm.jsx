@@ -1,5 +1,4 @@
-import { useState, useEffect} from "react";
-import { useNavigate } from "react-router-dom";
+import { useState} from "react";
 import axios from 'axios';
 import './SuplierForm.css';
 import { Link } from "react-router-dom";
@@ -13,7 +12,6 @@ const SuplierForm = () => {
     const [postalCode, setPostalCode] = useState("");
     const [sitioWep, setSitioWep] = useState("");
     const [errors, setErrors] = useState({});
-    const navigate = useNavigate();
 
     
 
@@ -64,7 +62,6 @@ const SuplierForm = () => {
             setPostalCode("");
             setSitioWep("");
             setErrors({});
-            navigate('/path-to-redirect'); 
         })
         .catch(err => {
             console.log(err);
@@ -155,7 +152,7 @@ const SuplierForm = () => {
                 <div className="cont">
                 <button type="submit">Add Suppliers</button>
                 {errors.api && <span className="error">{errors.api}</span>}
-                <Link to='/'>
+                <Link to='/supliers'>
                 <button type="submit" id="btnCancelar">Cancel</button>
                 </Link>
                 </div>

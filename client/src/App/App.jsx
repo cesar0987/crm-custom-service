@@ -51,13 +51,14 @@ const App = () => {
           <Route path="*" element={<Dashboard />} />
 
           <Route path="/agregar/supliers" element={<SuplierForm />} />
-          <Route path="/actulizar/supliers/" element={<SupliersEdit />} />
+          <Route path="/actualizar/supliers/:id" element={<SupliersEdit />} />
 
           <Route
             path="/addProduct"
             element={<AddProduct addProduct={addProduct} />}
           />
         </Routes>
+        
       </Layout>
     </div>
   );

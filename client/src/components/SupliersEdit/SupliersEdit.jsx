@@ -2,7 +2,8 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import { Link } from 'react-router-dom';
-const SupliersEdit=  (props) => {
+import './SupliersEdit.css'
+const SupliersEdit=  () => {
     const { id } = useParams();
     const [name, setName] = useState("");
     const [ruc, setRuc] = useState("");
@@ -11,6 +12,7 @@ const SupliersEdit=  (props) => {
     const [mail, setMail] = useState("");
     const [postalCode, setPostalCode] = useState("");
     const [sitioWep, setSitioWep] = useState("");
+    const [successMessage, setSuccessMessage] = useState("")
 
 
     useEffect(() => {
@@ -20,8 +22,8 @@ const SupliersEdit=  (props) => {
                 setRuc(res.data.ruc);
                 setPhone(res.data.phone);
                 setAddress(res.data.address);
-                setPostalCode(res.data.postalCode);
                 setMail(res.data.mail);
+                setPostalCode(res.data.postalCode);
                 setSitioWep(res.data.sitioWep);
             })
             .catch(err => console.log(err));
@@ -34,17 +36,24 @@ const SupliersEdit=  (props) => {
             ruc,
             phone,
             address,
-            postalCode,
             mail,
+            postalCode,
             sitioWep
         })
-            .then(res => console.log(res))
+            .then(res =>{
+                console.log(res);
+                setSuccessMessage("Se Actualizo con exito");
+            })
             .catch(err => console.log(err));
     };
 
     return (
+        
+         
         <div className="suplierCont">
+        {successMessage && <p className="success-message">{successMessage}</p>}     
         <h1 className="titulo">Update Suppliers</h1>
+        
         <form onSubmit={actualizarSupliers} className="supplier-form">
             <p>
                 <label>Name</label><br />
@@ -118,12 +127,13 @@ const SupliersEdit=  (props) => {
             </p>
             <div className="cont">
             <button type="submit">Update Suppliers</button>
-            <Link to='/'>
+            <Link to='/supliers'>
             <button type="submit" id="btnCancelar">Cancel</button>
             </Link>
             </div>
         </form>
     </div>
+    
     );
 }
 
