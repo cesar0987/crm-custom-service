@@ -11,7 +11,7 @@ const supliersSchema = new mongoose.Schema({
         required: [true, "RUC is required"],
     },
     phone: {
-        type: String, // Assuming phone number is stored as a string
+        type: String, 
         required: [true, "Phone is required"],
     },
     address: {
@@ -25,7 +25,7 @@ const supliersSchema = new mongoose.Schema({
         match: [/.+\@.+\..+/, "Please fill a valid email address"],
     },
     postalCode: {
-        type: String, // Assuming postal code is stored as a string
+        type: String, 
         required: [true, "Postal code is required"],
     },
     sitioWep: {

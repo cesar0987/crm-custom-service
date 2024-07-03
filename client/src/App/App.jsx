@@ -13,7 +13,9 @@ import {
   Supliers,
   Home,
 } from "pages";
-import SuplierForm from "pages/supliersForm/SuplierForm";
+import SuplierForm from "components/supliersForm/SuplierForm";
+import SupliersEdit from "components/SupliersEdit/SupliersEdit";
+
 import { Layout } from "components";
 import { AddProduct } from "components";
 
@@ -49,6 +51,7 @@ const App = () => {
           <Route path="*" element={<Dashboard />} />
 
           <Route path="/agregar/supliers" element={<SuplierForm />} />
+          <Route path="/actulizar/supliers/" element={<SupliersEdit />} />
 
           <Route
             path="/addProduct"

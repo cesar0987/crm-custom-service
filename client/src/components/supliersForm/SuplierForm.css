@@ -1,8 +1,8 @@
 
   .supplier-form button {
 
-    background-color: #2c7bc9;
-    background-color: #8B9195;
+    background-color: #19B0CB;
+    
 
     color: white;
     padding: 10px 20px;
@@ -58,7 +58,26 @@
   
   
   .supplier-form button:hover {
-    background-color: #626567;
+    background-color: #0199B4;
   }
   
+#btnCancelar{
+  
+  background-color:#F05555;
+  
 
+  color: white;
+  padding: 10px 50px;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  font-size: 16px;
+ 
+}
+#btnCancelar:hover{
+  background-color: #CA2222;
+}
+.cont{
+  display: flex;
+  justify-content: space-between ;
+}

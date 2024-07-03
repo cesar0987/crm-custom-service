@@ -1,4 +1,4 @@
-import '../supliers/supliers.css';
+import '../supliers/Supliers.css'
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
@@ -64,6 +64,7 @@ export const Supliers = () => {
             <th>Mail</th>
             <th>Postal Code</th>
             <th>Sitio Web</th>
+            <th>Actions</th>
           </tr>
         </thead>
         <tbody>
@@ -76,6 +77,13 @@ export const Supliers = () => {
               <td>{suplier.mail}</td>
               <td>{suplier.postalCode}</td>
               <td>{suplier.sitioWep}</td>
+              <Link to='/actulizar/supliers/'>
+              <button>edit</button>
+              </Link>
+              <div>
+
+                <button>Delete</button>
+              </div>
             </tr>
           ))}
         </tbody>
