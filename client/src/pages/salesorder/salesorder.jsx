@@ -2,11 +2,15 @@ import React, { useState, useEffect } from "react";
 import { jsPDF } from "jspdf";
 import "jspdf-autotable";
 import "./salesorder.css";
+import Next from "Assets/Next.svg"
+import Previous from "Assets/Previous.svg"
 
 export const SalesOrder = () => {
     const [products, setProducts] = useState([]);
     const [selectedProducts, setSelectedProducts] = useState([]);
     const [purchased, setPurchased] = useState({});
+    const [currentPage, setCurrentPage] = useState(1);
+    const [productsPerPage] = useState(12);
 
     useEffect(() => {
         const fetchProducts = async () => {
@@ -128,11 +132,18 @@ export const SalesOrder = () => {
             return p;
         }));
     };
+
+    const indexOfLastProduct = currentPage * productsPerPage;
+    const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
+    const currentProducts = products.slice(indexOfFirstProduct, indexOfLastProduct);
+    const totalPages = Math.ceil(products.length / productsPerPage);
+
+    const paginate = (pageNumber) => setCurrentPage(pageNumber);
     
 
     return (
-        <div>
-            <h1>Sales Order</h1>
+        <div className="salesOrderContainer">
+            <h1 className="salesOrder">Sales Order</h1>
             <table className="table">
                 <thead>
                     <tr>
@@ -145,7 +156,7 @@ export const SalesOrder = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    {products.map((product) => (
+                    {currentProducts.map((product) => (
                         <tr key={product._id}>
                             <td>{product.name}</td>
                             <td>{formatPrice(product.price)} Gs</td>
@@ -154,6 +165,7 @@ export const SalesOrder = () => {
                             <td>
                                 <input
                                     type="number"
+                                    className="inputOfSalesOrder"
                                     value={purchased[product._id] || ""}
                                     onChange={(e) => subtractPurchasedProduct(product, parseInt(e.target.value))}
                                     disabled={product.quantity === 0}
@@ -170,7 +182,26 @@ export const SalesOrder = () => {
                     ))}
                 </tbody>
             </table>
-            <button className="btnBilling" onClick={generatePDF}>Generate Billing</button>
+            <div className="pageInfo">
+                {currentPage} / {totalPages}
+            </div>
+            <div className="pagination">
+                <button
+                onClick={() => paginate(currentPage - 1)}
+                disabled={currentPage === 1} >
+                <img src={Previous} className="pages" alt="Previous" />
+                </button>
+                <button
+                onClick={() => paginate(currentPage + 1)}
+                disabled={
+                    currentPage === totalPages
+                } >
+                <img src={Next} className="pages" alt="Next" />
+                </button>
+            </div>
+            <button className="btnBilling" onClick={generatePDF}>
+                Generate Billing
+            </button>
         </div>
     );
 };
