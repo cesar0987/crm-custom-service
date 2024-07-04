@@ -1,3 +1,11 @@
+.mainSupplierContainer {
+  width: 100%;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  background-color: #f9f9f9;
+  display: flex;
+}
+
 .supliersContainer {
   width: 100%;
   margin: 0 auto;
@@ -18,7 +26,8 @@
   border-collapse: collapse;
 }
 
-.supliersContainer th, .supliersContainer td {
+.supliersContainer th,
+.supliersContainer td {
   padding: 10px;
   text-align: left;
   border: 1px solid #ddd;
@@ -37,7 +46,7 @@
   background-color: #ddd;
 }
 
-.btn{
+.btn {
   background-color: #2c7bc9;
   color: white;
   border: none;
@@ -51,7 +60,6 @@
 
 .btn:hover {
   background-color: #1b5a89;
-
 }
 
 .error {
