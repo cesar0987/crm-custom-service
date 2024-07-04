@@ -25,7 +25,9 @@ module.exports.createSupliers = async (req, res) => {
     // Verificar si ya existe proveedor con el mismo RUC
     const existingSupplier = await Supliers.findOne({ ruc });
     if (existingSupplier) {
-      return res.status(400).json({ error: "Supplier with this RUC already exists" });
+      return res
+        .status(400)
+        .json({ error: "Supplier with this RUC already exists" });
     }
 
     // Crear el nuevo proveedor
@@ -36,7 +38,7 @@ module.exports.createSupliers = async (req, res) => {
       address,
       mail,
       postalCode,
-      sitioWep,
+      sitioWeb,
     });
 
     console.log("New Supplier:", newSuplier);

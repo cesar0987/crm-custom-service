@@ -2,7 +2,7 @@ import { Nav } from "../Nav/Nav";
 import { Header } from "../Header/Header";
 import { useLocation } from "react-router-dom";
 import "./Layout.css";
-import { Footer } from "../Footer/Footer";
+// import { Footer } from "../Footer/Footer";
 
 export const Layout = ({ children }) => {
   const { pathname } = useLocation();
@@ -19,9 +19,9 @@ export const Layout = ({ children }) => {
           <Nav />
           {children}
         </div>
-        <div className="rowDown">
-          <Footer />
-        </div>
+        {/* <div className="rowDown">
+          {<Footer />}
+        </div> */}
       </div>
     );
   }

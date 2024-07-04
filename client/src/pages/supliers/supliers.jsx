@@ -1,9 +1,12 @@
+
 import '../supliers/Supliers.css'
+import { AvatarSection, QuickActions } from "components";
+import "../supliers/supliers.css";
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import axios from 'axios';
-
 export const Supliers = ({removeFromDom}) => {
+export const Supliers = () => {
   const [supliers, setSuplier] = useState([]);
   const [loaded, setLoaded] = useState(true);
   const [error, setError] = useState(null);
@@ -55,16 +58,40 @@ export const Supliers = ({removeFromDom}) => {
   }
 
   return (
-    <div className="supliersContainer">
-      <h1>Supliers</h1>
+    <div className="mainSupplierContainer">
+      <div className="supliersContainer">
+        <div>
+          <Link to="/agregar/supliers">
+            <button className="btn">Add Supliers</button>
+          </Link>
+        </div>
 
-      <div >
-        <Link to='/agregar/supliers'>
-        <button className='btn'>
-          Add Supliers
-        </button>
-        </Link>
-
+        <table>
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>RUC</th>
+              <th>Phone</th>
+              <th>Address</th>
+              <th>Mail</th>
+              <th>Postal Code</th>
+              <th>Sitio Web</th>
+            </tr>
+          </thead>
+          <tbody>
+            {supliers.map((suplier, index) => (
+              <tr key={index}>
+                <td>{suplier.name}</td>
+                <td>{suplier.ruc}</td>
+                <td>{suplier.phone}</td>
+                <td>{suplier.address}</td>
+                <td>{suplier.mail}</td>
+                <td>{suplier.postalCode}</td>
+                <td>{suplier.sitioWep}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
       </div>
 
       <table>
@@ -104,6 +131,10 @@ export const Supliers = ({removeFromDom}) => {
           ))}
         </tbody>
       </table>
+      <div className="rightPanel">
+        <AvatarSection />
+        <QuickActions />
+      </div>
     </div>
   );
 };
