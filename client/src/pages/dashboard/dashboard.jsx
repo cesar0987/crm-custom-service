@@ -2,6 +2,23 @@ import { AvatarSection, QuickActions, BarChart } from "components";
 import "./dashboard.css";
 
 export const Dashboard = () => {
+  const todaySales = async () => {
+    try {
+      const response = await fetch("http://localhost:8000/api/sales/today", {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      const data = await response.json();
+      if (!response.ok) {
+        throw new Error("Something went wrong");
+      }
+      return data;
+    } catch (error) {
+      console.error(error.message);
+    }
+  };
   return (
     <div className="dashboardContainer">
       <div className="leftPanel">
