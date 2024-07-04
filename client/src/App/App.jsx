@@ -1,6 +1,7 @@
 import "./App.css";
 import { Routes, Route } from "react-router-dom";
 import { useState, useEffect } from "react";
+import { AddProduct, SuplierForm, SupliersEdit, Layout } from "components";
 import {
   Dashboard,
   Help,
@@ -14,10 +15,6 @@ import {
   Home,
   ProtectedRoutes,
 } from "pages";
-import SuplierForm from "components/supliersForm/SuplierForm";
-import SupliersEdit from "components/SupliersEdit/SupliersEdit";
-import { Layout } from "components";
-import { AddProduct, SuplierForm } from "components";
 
 const App = () => {
   useEffect(() => {
@@ -36,27 +33,9 @@ const App = () => {
           <Route path="/welcome" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
-              <Route path="/dashboard" element={<Dashboard />} />
-              <Route path="/inventory" element={<Inventory />} />
-              <Route path="/salesorder" element={<SalesOrder />} />
-              <Route path="/supliers" element={<Supliers />} />
-              <Route path="/reports" element={<Reports />} />
-              <Route path="/help" element={<Help />} />
-              <Route path="/settings" element={<Settings />} />
-              <Route path="*" element={<Dashboard />} />
-              <Route path="/addProduct" element={<AddProduct addProduct={addProduct} />} />
-
-          <Route path="*" element={<Dashboard />} />
-
-          <Route path="/agregar/supliers" element={<SuplierForm />} />
-          <Route path="/actualizar/supliers/:id" element={<SupliersEdit />} />
-
-          <Route
-            path="/addProduct"
-            element={<AddProduct addProduct={addProduct} />}
-          />
           <Route element={<ProtectedRoutes />}>
             <Route path="/agregar/supliers" element={<SuplierForm />} />
+            <Route path="/editar/supliers" element={<SupliersEdit />} />
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/inventory" element={<Inventory />} />
             <Route path="/salesorder" element={<SalesOrder />} />
@@ -72,7 +51,6 @@ const App = () => {
             <Route path="*" element={<Dashboard />} />
           </Route>
         </Routes>
-        
       </Layout>
     </div>
   );

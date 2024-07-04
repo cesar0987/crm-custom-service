@@ -6,6 +6,6 @@ export { Register } from "./register/register";
 export { Reports } from "./reports/reports";
 export { SalesOrder } from "./salesorder/salesorder";
 export { Settings } from "./settings/settings";
-export { Supliers } from "./supliers/Supliers";
 export { Home } from "./home/home";
 export { ProtectedRoutes } from "./utils/ProtectedRoutes";
+export { Supliers } from "./supliers/supliers";
