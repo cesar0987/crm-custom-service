@@ -1,4 +1,4 @@
-import { QuickActions } from "components";
+import { AvatarSection, QuickActions } from "components";
 import "../supliers/supliers.css";
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
@@ -42,45 +42,44 @@ export const Supliers = () => {
   }
 
   return (
-    <div className="suppliersContainer">
-      <div className="leftPanel">
-        <div className="supliersContainer">
-
-          <div>
-            <Link to="/agregar/supliers">
-              <button className="btn">Add Supliers</button>
-            </Link>
-          </div>
-
-          <table>
-            <thead>
-              <tr>
-                <th>Name</th>
-                <th>RUC</th>
-                <th>Phone</th>
-                <th>Address</th>
-                <th>Mail</th>
-                <th>Postal Code</th>
-                <th>Sitio Web</th>
-              </tr>
-            </thead>
-            <tbody>
-              {supliers.map((suplier, index) => (
-                <tr key={index}>
-                  <td>{suplier.name}</td>
-                  <td>{suplier.ruc}</td>
-                  <td>{suplier.phone}</td>
-                  <td>{suplier.address}</td>
-                  <td>{suplier.mail}</td>
-                  <td>{suplier.postalCode}</td>
-                  <td>{suplier.sitioWep}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+    <div className="mainSupplierContainer">
+      <div className="supliersContainer">
+        <div>
+          <Link to="/agregar/supliers">
+            <button className="btn">Add Supliers</button>
+          </Link>
         </div>
+
+        <table>
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>RUC</th>
+              <th>Phone</th>
+              <th>Address</th>
+              <th>Mail</th>
+              <th>Postal Code</th>
+              <th>Sitio Web</th>
+            </tr>
+          </thead>
+          <tbody>
+            {supliers.map((suplier, index) => (
+              <tr key={index}>
+                <td>{suplier.name}</td>
+                <td>{suplier.ruc}</td>
+                <td>{suplier.phone}</td>
+                <td>{suplier.address}</td>
+                <td>{suplier.mail}</td>
+                <td>{suplier.postalCode}</td>
+                <td>{suplier.sitioWep}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
       </div>
+
       <div className="rightPanel">
+        <AvatarSection />
         <QuickActions />
       </div>
     </div>
