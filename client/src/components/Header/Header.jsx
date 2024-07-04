@@ -27,7 +27,7 @@ export const Header = () => {
         <h1>Terracota Shoes</h1>
         <h2>Inventory Management System</h2>
       </div>
-   {/*    <div className="headerExchange">
+      {/*    <div className="headerExchange">
         <h3>Exchange Money</h3>
         <div className="purchase">
           <p>USD: {exchangeMoney[0]?.purchasePrice}Gs</p>
