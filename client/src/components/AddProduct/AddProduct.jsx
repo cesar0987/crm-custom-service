@@ -154,32 +154,32 @@ export const AddProduct = ({ addProduct }) => {
         </div>
       </div>
       <div className="rightPanel">
-          <AvatarSection />
-          <QuickActions />
-          <div className="recentActivity">
-            <span>
-              <b>Recent Activity</b>
-            </span>
-            <div className="actionDate">
-                <div className="details">
-                  <h2 className="titles"> Action </h2>
-                  {mostRecentActivity.map((product) => (
-                      <p key={product.ref} className="productsDetails">
-                        <h3 className="nameDetail">{product.name}</h3>
-                      </p>
-                    ))}
-                </div>
-                <div className="details">
-                  <h2 className="titles"> Date </h2>
-                  {mostRecentActivity.map((product) => (
-                  <p key={product.ref} className="productsDetails">
-                    <h3 className="nameDetail">{formatDate(product.date)}</h3>
-                  </p>
-                  ))}
-                </div>
+        <AvatarSection />
+        <QuickActions />
+        <div className="recentActivity">
+          <span>
+            <b>Recent Activity</b>
+          </span>
+          <div className="actionDate">
+            <div className="details">
+              <h2 className="titles"> Action </h2>
+              {mostRecentActivity.map((product) => (
+                <p key={product.ref} className="productsDetails">
+                  <h3 className="nameDetail">{product.name}</h3>
+                </p>
+              ))}
+            </div>
+            <div className="details">
+              <h2 className="titles"> Date </h2>
+              {mostRecentActivity.map((product) => (
+                <p key={product.ref} className="productsDetails">
+                  <h3 className="nameDetail">{formatDate(product.date)}</h3>
+                </p>
+              ))}
             </div>
           </div>
         </div>
       </div>
+    </div>
   );
 };
