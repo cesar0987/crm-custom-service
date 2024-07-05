@@ -1,5 +1,6 @@
 const Product = require("../models/inventory.models");
 const moment = require("moment");
+
 module.exports.getAllProducts = (req, res) => {
   Product.find()
     .then((allProducts) => {
@@ -92,5 +93,68 @@ module.exports.updateQuantity = async (req, res) => {
   } catch (err) {
     console.error("Error updating products:", err);
     res.status(500).json(err);
+  }
+};
+
+module.exports.getProductById = (req, res) => {
+  const { id } = req.params;
+
+  Product.findById(id)
+    .then((product) => {
+      if (!product) {
+        return res.status(404).json({ message: "Product not found" });
+      }
+      res.json(product);
+    })
+    .catch((err) => {
+      console.error("Error retrieving product:", err);
+      res.status(500).json(err);
+    });
+};
+
+module.exports.updateProduct = async (req, res) => {
+  const { id } = req.params;
+  const { name, price, description, quantity, ref, brand, size, color, date } =
+    req.body;
+
+  console.log("Request body:", req.body);
+
+  if (!id) {
+    return res.status(400).json({ message: "Product ID is required" });
+  }
+
+  // Convertir la fecha a un objeto de fecha válido
+  const formattedDate = moment(date, "YYYY-MM-DD", true).toDate();
+  if (!formattedDate || isNaN(formattedDate.getTime())) {
+    return res.status(400).json({ message: "Invalid date format" });
+  }
+
+  try {
+    const updatedProduct = await Product.findByIdAndUpdate(
+      id,
+      {
+        name,
+        price,
+        description,
+        quantity,
+        ref,
+        brand,
+        size,
+        color,
+        date: formattedDate,
+      },
+      { new: true, runValidators: true }
+    );
+
+    console.log("Updated Product:", updatedProduct);
+
+    if (!updatedProduct) {
+      return res.status(404).json({ message: "Product not found" });
+    }
+
+    res.json(updatedProduct);
+  } catch (err) {
+    console.error("Error updating product:", err);
+    res.status(500).json({ message: "Server error", error: err });
   }
 };
