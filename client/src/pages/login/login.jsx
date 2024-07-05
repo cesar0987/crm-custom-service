@@ -1,7 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import imgLogin from "../../Assets/cart-shopping-fast.svg";
+import imgLogin from "../../Assets/Logo.png";
 import imgBackground from "../../Assets/BG.png";
 import Cookies from "universal-cookie";
 import "./login.css";
@@ -36,8 +36,7 @@ export const Login = ({ setIsAuthenticated }) => {
         className="ImagenBackgroud"
       />
       <div className="loginContainer">
-        <img src={imgLogin} alt="Imagen Login" className="img" />
-        <h1> LOGIN </h1>
+        <img src={imgLogin} alt="Imagen Login" className="logo" />
         <form onSubmit={handleSubmit}>
           <input
             type="email"

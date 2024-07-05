@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import imgLogin from "../../Assets/cart-shopping-fast.svg";
+import imgLogin from "../../Assets/Logo.png";
 import imgBackground from "../../Assets/BG.png";
 
 import "./register.css"
@@ -52,15 +52,14 @@ export const Register = () => {
   };
 
   return (
-    <div className="loginDesing">
+    <div className="registerDesing">
       <img
         src={imgBackground}
         alt="Imagen de fondo"
         className="ImagenBackgroud"
       />
       <div className="registerContainer">
-        <img src={imgLogin} alt="Imagen Login" className="img" />
-        <h2> Register </h2>
+        <img src={imgLogin} alt="Imagen Login" className="logo" />
         <form onSubmit={handleSubmit} className="formContainer" >
           <div className="inputContainer">
             <input
@@ -95,7 +94,7 @@ export const Register = () => {
             {errors.confirmPassword && <div className="error"> {errors.confirmPassword} </div>}
           </div>
           <div className="buttonContainer">
-            <button type="submit" className="register"> Register </button>
+            <button type="submit" className="register"> REGISTER </button>
           </div>
         </form>
       </div>
