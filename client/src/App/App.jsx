@@ -18,9 +18,6 @@ import {
   UpdateProductPage,
 } from "pages";
 
-
-
-
 const App = () => {
   useEffect(() => {
     document.title = "CRM";

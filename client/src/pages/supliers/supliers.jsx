@@ -1,4 +1,4 @@
-import '../supliers/Supliers.css';
+import '../supliers/supliers.css'
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import axios from 'axios';
