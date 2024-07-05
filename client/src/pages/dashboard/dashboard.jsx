@@ -1,7 +1,48 @@
 import { AvatarSection, QuickActions, BarChart } from "components";
+import { useEffect, useState } from "react";
 import "./dashboard.css";
 
 export const Dashboard = () => {
+  const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const fetchProducts = async () => {
+    try {
+      setLoading(true);
+      const response = await fetch("http://localhost:8000/api/products", {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      const data = await response.json();
+      setProducts(data);
+      if (!response.ok) {
+        throw new Error("Something went wrong");
+      }
+    } catch (error) {
+      setError(error.message);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchProducts();
+  }, []);
+
+  console.log("Products", products);
+  const countProducts = () => {
+    let count = 0;
+    products.map((product) => {
+      console.log("Product quantity", product.quantity);
+      count += Number(product.quantity);
+      return count;
+    });
+    return count;
+  };
+
+  console.log("Products quantity", countProducts());
   return (
     <div className="dashboardContainer">
       <div className="leftPanel">
@@ -17,11 +58,13 @@ export const Dashboard = () => {
           </span>
           <span>
             <b>Product</b>
+            <p>{countProducts()}</p>
           </span>
         </div>
         <div className="salesReport">
           <span>
             <b>Sales Report</b>
+            <p></p>
           </span>
           <span className="barChartDashboard">
             <BarChart />

@@ -111,16 +111,14 @@ export const Inventory = () => {
           <div className="pagination">
             <button
               onClick={() => paginate(currentPage - 1)}
-              disabled={currentPage === 1}
-            >
+              disabled={currentPage === 1} >
               <img src={Previous} className="pages" alt="Previous" />
             </button>
             <button
               onClick={() => paginate(currentPage + 1)}
               disabled={
                 currentPage === totalPages
-              }
-            >
+              } >
               <img src={Next} className="pages" alt="Next" />
             </button>
           </div>

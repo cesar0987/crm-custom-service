@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import "./AddProduct.css";
+import { AvatarSection, InventorySearchBar, QuickActions } from "components";
 
 export const AddProduct = ({ addProduct }) => {
   const [name, setName] = useState("");
@@ -13,6 +14,7 @@ export const AddProduct = ({ addProduct }) => {
   const [brand, setBrand] = useState("");
   const [date, setDate] = useState("");
   const [error, setError] = useState("");
+  const [products, setProducts] = useState([]);
   const navigate = useNavigate();
   const { id } = useParams();
 
@@ -93,9 +95,17 @@ export const AddProduct = ({ addProduct }) => {
     }
   };
 
+  const formatDate = (dateString) => {
+    const date = new Date(dateString);
+    const options = { year: "numeric", month: "2-digit", day: "2-digit" };
+    return date.toLocaleDateString("en-US", options);
+  };
+
+  const mostRecentActivity = products.slice(0, 4);
+
   return (
     <div className="addProductContainer">
-      <h1 className="addProductTitle">{id ? "Update Product" : "Add Product"}</h1>
+      <h1 className="addProductTitle"> Add Product </h1>
       <form onSubmit={procesarForm} className="addProductForm">
         <div className="formGroup">
           <label> Name: </label>
@@ -170,7 +180,7 @@ export const AddProduct = ({ addProduct }) => {
           />
         </div>
         <div className="formGroup">
-          <button type="submit">{id ? "Update Product" : "Add Product"}</button>
+          <button type="submit"> Add Product </button>
         </div>
       </form>
       {error && <p className="errorMessage">{error}</p>}

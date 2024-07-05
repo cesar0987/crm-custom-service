@@ -14,34 +14,59 @@ module.exports.getAllProducts = (req, res) => {
 };
 
 module.exports.createProduct = (req, res) => {
-  const { name, price, description, quantity, ref, brand, size, color, date } = req.body;
+  const { name, price, description, quantity, ref, brand, size, color, date } =
+    req.body;
 
   //VALIDACIONES
-  if (!name || !price || !description || !quantity || !ref || !brand || !size || !color || !date) {
+  if (
+    !name ||
+    !price ||
+    !description ||
+    !quantity ||
+    !ref ||
+    !brand ||
+    !size ||
+    !color ||
+    !date
+  ) {
     return res.status(400).json({ message: "All fields are required" });
   }
 
   if (name.length < 3) {
-    return res.status(400).json({ message: "Name must be at least 3 characters long" });
+    return res
+      .status(400)
+      .json({ message: "Name must be at least 3 characters long" });
   }
   if (price < 0) {
     return res.status(400).json({ message: "Price must be at least 0" });
   }
   if (description.length < 5) {
-    return res.status(400).json({ message: "Description must be at least 5 characters long" });
+    return res
+      .status(400)
+      .json({ message: "Description must be at least 5 characters long" });
   }
   if (quantity < 0) {
     return res.status(400).json({ message: "Quantity must be at least 0" });
   }
 
   // Convirtiendo formato de fecha a "YYYY-MM-DD"
-  const formattedDate = moment(date, 'YYYY-MM-DD', true).toDate();
+  const formattedDate = moment(date, "YYYY-MM-DD", true).toDate();
 
   if (!formattedDate || isNaN(formattedDate.getTime())) {
     return res.status(400).json({ message: "Invalid date format" });
   }
 
-  Product.create({ name, price, description, quantity, ref, brand, size, color, date: formattedDate })
+  Product.create({
+    name,
+    price,
+    description,
+    quantity,
+    ref,
+    brand,
+    size,
+    color,
+    date: formattedDate,
+  })
     .then((newProduct) => {
       console.log("New Product:", newProduct);
       res.json(newProduct);
@@ -55,15 +80,19 @@ module.exports.createProduct = (req, res) => {
 module.exports.updateQuantity = async (req, res) => {
   const updatedProducts = req.body;
   try {
-      const promises = updatedProducts.map(product =>
-          Product.findByIdAndUpdate(product._id, { quantity: product.quantity }, { new: true })
-      );
-      const results = await Promise.all(promises);
-      const allProducts = await Product.find(); // Obtener todos los productos actualizados
-      res.json(allProducts);
+    const promises = updatedProducts.map((product) =>
+      Product.findByIdAndUpdate(
+        product._id,
+        { quantity: product.quantity },
+        { new: true }
+      )
+    );
+    const results = await Promise.all(promises);
+    const allProducts = await Product.find(); // Obtener todos los productos actualizados
+    res.json(allProducts);
   } catch (err) {
-      console.error("Error updating products:", err);
-      res.status(500).json(err);
+    console.error("Error updating products:", err);
+    res.status(500).json(err);
   }
 };
 
@@ -85,7 +114,8 @@ module.exports.getProductById = (req, res) => {
 
 module.exports.updateProduct = async (req, res) => {
   const { id } = req.params;
-  const { name, price, description, quantity, ref, brand, size, color, date } = req.body;
+  const { name, price, description, quantity, ref, brand, size, color, date } =
+    req.body;
 
   console.log("Request body:", req.body);
 
@@ -128,7 +158,3 @@ module.exports.updateProduct = async (req, res) => {
     res.status(500).json({ message: "Server error", error: err });
   }
 };
-
-
-
-
