@@ -27,7 +27,8 @@ export const SuplierForm = () => {
       newErrors.address = "Address must be at least 5 characters long";
 
     if (!mail) newErrors.mail = "Mail is required";
-    else if (!/.+\@.+\..+/.test(mail))
+    else if (!/.+@.+\..+/.test(mail)) newErrors.mail = "Please fill a valid email address";
+
       newErrors.mail = "Please fill a valid email address";
 
     if (!postalCode) newErrors.postalCode = "Postal code is required";
