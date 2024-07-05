@@ -28,15 +28,11 @@ const App = () => {
   const addProduct = (product) => {
     setProducts([...products, product]);
   };
-
   return (
     <div className="App">
-      <Layout>
+      <Layout >
         <Routes>
-          <Route path="/welcome" element={<Home />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/agregar/supliers" element={<SuplierForm />} />
+          <Route path="/" element={<Home />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/inventory" element={<Inventory />} />
           <Route path="/salesorder" element={<SalesOrder />} />
@@ -44,9 +40,17 @@ const App = () => {
           <Route path="/reports" element={<Reports />} />
           <Route path="/help" element={<Help />} />
           <Route path="/settings" element={<Settings />} />
-          <Route path="/addProduct" element={<AddProduct addProduct={addProduct} />} />
-          <Route path="/update-product/:id" element={<UpdateProductPage addProduct={addProduct} />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
           <Route path="*" element={<Dashboard />} />
+
+          <Route path="/agregar/supliers" element={<SuplierForm />} />
+
+          <Route
+            path="/addProduct"
+            element={<AddProduct addProduct={addProduct} />}
+          />
+
         </Routes>
       </Layout>
     </div>

@@ -5,6 +5,7 @@
   height: 100vh;
   background-color: #264eca;
 }
+
 .loginContainer {
   display: flex;
   justify-content: center;
@@ -14,11 +15,13 @@
   height: 500px;
   background-color: #264eca;
 }
+
 .loginContainer img {
   width: 100px;
   height: 100px;
   margin: 10px;
 }
+
 .loginContainer input {
   width: 300px;
   height: 40px;
