@@ -2,7 +2,7 @@
 import "./App.css";
 import { Routes, Route } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { AddProduct, SupliersEdit, Layout } from "components";
+import { AddProduct, SupliersEdit, Layout, SuplierForm} from "components";
 import { ProtectedRoutes } from "../pages/utils/ProtectedRoutes";
 import {
   Dashboard,
