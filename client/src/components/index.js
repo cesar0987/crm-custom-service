@@ -11,4 +11,4 @@ export { QuickActions } from "./QuickActions/QuickActions";
 export { AddProduct } from "./AddProduct/AddProduct";
 export { BarChart } from "./BarChart/BarChart";
 export {SuplierForm} from "../components/SuplierForm/SuplierForm"
-export { SupliersEdit } from "./SupliersEdit/SupliersEdit";
+export { SupliersEdit} from "./SupliersEdit/SupliersEdit";
