@@ -14,7 +14,6 @@ import {
   SalesOrder,
   Settings,
   Supliers,
-  SuplierForm,
   Home,
   UpdateProductPage,
 } from "pages";
