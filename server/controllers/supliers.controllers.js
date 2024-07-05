@@ -38,7 +38,7 @@ module.exports.createSupliers = async (req, res) => {
       address,
       mail,
       postalCode,
-      sitioWeb,
+      sitioWep,
     });
 
     console.log("New Supplier:", newSuplier);
