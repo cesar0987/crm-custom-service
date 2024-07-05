@@ -2,7 +2,7 @@ import { useState } from "react";
 import axios from 'axios';
 import '../supliersForm/SuplierForm.css';
 
-const SuplierForm = () => {
+export const SuplierForm = () => {
     const [name, setName] = useState("");
     const [ruc, setRuc] = useState("");
     const [phone, setPhone] = useState("");
@@ -155,4 +155,4 @@ const SuplierForm = () => {
     );
 }
 
-export default SuplierForm;
+

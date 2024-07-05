@@ -1,25 +1,53 @@
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import "./AddProduct.css";
 
 export const AddProduct = ({ addProduct }) => {
   const [name, setName] = useState("");
-  const [price, setPrice] = useState(0);
+  const [price, setPrice] = useState("");
   const [description, setDescription] = useState("");
   const [ref, setRef] = useState("");
-  const [quantity, setQuantity] = useState(0);
+  const [quantity, setQuantity] = useState("");
   const [size, setSize] = useState("");
   const [color, setColor] = useState("");
   const [brand, setBrand] = useState("");
   const [date, setDate] = useState("");
   const [error, setError] = useState("");
   const navigate = useNavigate();
+  const { id } = useParams();
+
+  useEffect(() => {
+    if (id) {
+      const fetchProduct = async () => {
+        try {
+          const response = await fetch(`http://localhost:8000/api/product/${id}`);
+          const data = await response.json();
+          setName(data.name);
+          setPrice(data.price);
+          setDescription(data.description);
+          setRef(data.ref);
+          setQuantity(data.quantity);
+          setSize(data.size);
+          setColor(data.color);
+          setBrand(data.brand);
+          setDate(data.date ? data.date.slice(0, 10) : "");
+        } catch (error) {
+          setError("Error fetching product details.");
+        }
+      };
+
+      fetchProduct();
+    }
+  }, [id]);
 
   const procesarForm = async (e) => {
     e.preventDefault();
-    const URL = "http://localhost:8000/api/create/product";
+    const method = id ? "PUT" : "POST";
+    const URL = id
+      ? `http://localhost:8000/api/update/product/${id}`
+      : "http://localhost:8000/api/create/product";
     const configuracion = {
-      method: "POST",
+      method,
       headers: {
         "Content-Type": "application/json",
       },
@@ -27,8 +55,8 @@ export const AddProduct = ({ addProduct }) => {
         name,
         description,
         ref,
-        price,
-        quantity,
+        price: parseFloat(price),
+        quantity: parseInt(quantity),
         size,
         color,
         brand,
@@ -36,31 +64,38 @@ export const AddProduct = ({ addProduct }) => {
       }),
     };
 
-    const respuesta = await fetch(URL, configuracion);
-    const datos = await respuesta.json();
+    try {
+      const respuesta = await fetch(URL, configuracion);
+      const datos = await respuesta.json();
 
-    if (!respuesta.ok) {
-      console.log(datos);
-      setError(datos.message);
-    } else {
-      addProduct(datos);
-      setName("");
-      setDescription("");
-      setRef("");
-      setColor("");
-      setDate("");
-      setPrice(0);
-      setQuantity(0);
-      setSize("");
-      setBrand("");
-      setError("");
-      navigate("/inventory");
+      if (!respuesta.ok) {
+        console.log(datos);
+        setError(datos.message);
+      } else {
+        if (method === "POST") {
+          addProduct(datos);
+        }
+        setName("");
+        setDescription("");
+        setRef("");
+        setColor("");
+        setDate("");
+        setPrice("");
+        setQuantity("");
+        setSize("");
+        setBrand("");
+        setError("");
+        navigate("/inventory");
+      }
+    } catch (error) {
+      setError("Error al conectar con el servidor.");
+      console.log(error);
     }
   };
 
   return (
     <div className="addProductContainer">
-      <h1 className="addProductTitle"> Add Product </h1>
+      <h1 className="addProductTitle">{id ? "Update Product" : "Add Product"}</h1>
       <form onSubmit={procesarForm} className="addProductForm">
         <div className="formGroup">
           <label> Name: </label>
@@ -135,7 +170,7 @@ export const AddProduct = ({ addProduct }) => {
           />
         </div>
         <div className="formGroup">
-          <button type="submit"> Add Product </button>
+          <button type="submit">{id ? "Update Product" : "Add Product"}</button>
         </div>
       </form>
       {error && <p className="errorMessage">{error}</p>}
