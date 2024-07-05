@@ -13,7 +13,6 @@ import {
   SalesOrder,
   Settings,
   Supliers,
-  SuplierForm,
   Home,
 <<<<<<< HEAD
   UpdateProductPage,
