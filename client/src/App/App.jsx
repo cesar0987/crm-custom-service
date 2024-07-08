@@ -1,8 +1,7 @@
-
 import "./App.css";
 import { Routes, Route } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { AddProduct, SupliersEdit, Layout, SuplierForm} from "components";
+import { AddProduct, SupliersEdit, Layout, SuplierForm } from "components";
 import { ProtectedRoutes } from "../pages/utils/ProtectedRoutes";
 import {
   Dashboard,
@@ -18,9 +17,6 @@ import {
   UpdateProductPage,
 } from "pages";
 
-
-
-
 const App = () => {
   useEffect(() => {
     document.title = "CRM";
@@ -35,17 +31,19 @@ const App = () => {
     <div className="App">
       <Layout>
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/welcome" element={<Home />} />
           <Route path="/settings" element={<Settings />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
-
 
           <Route
             path="/addProduct"
             element={<AddProduct addProduct={addProduct} />}
           />
-           <Route path="/update-product/:id" element={<UpdateProductPage addProduct={addProduct} />} />
+          <Route
+            path="/update-product/:id"
+            element={<UpdateProductPage addProduct={addProduct} />}
+          />
 
           <Route element={<ProtectedRoutes />}>
             <Route path="/agregar/supliers" element={<SuplierForm />} />
@@ -59,7 +57,6 @@ const App = () => {
             <Route path="/settings" element={<Settings />} />
             <Route path="*" element={<Dashboard />} />
           </Route>
-
         </Routes>
       </Layout>
     </div>
