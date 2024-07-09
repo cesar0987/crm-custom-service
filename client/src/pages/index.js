@@ -8,7 +8,6 @@ export { SalesOrder } from "./salesorder/salesorder";
 export { Settings } from "./settings/settings";
 export { Home } from "./home/home";
 export { UpdateProductPage } from "./updateproductpage/updateProductPage";
-export { SuplierForm } from "./supliersForm/SuplierForm";
 export { ProtectedRoutes } from "./utils/ProtectedRoutes";
 export { Supliers } from "./supliers/supliers";
 

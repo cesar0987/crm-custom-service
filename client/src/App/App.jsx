@@ -18,9 +18,6 @@ import {
   UpdateProductPage,
 } from "pages";
 
-
-
-
 const App = () => {
   useEffect(() => {
     document.title = "CRM";
@@ -58,6 +55,7 @@ const App = () => {
             <Route path="/help" element={<Help />} />
             <Route path="/settings" element={<Settings />} />
             <Route path="*" element={<Dashboard />} />
+            <Route path="/actualizar/supliers/:id" element={<SupliersEdit />} />
           </Route>
 
         </Routes>
