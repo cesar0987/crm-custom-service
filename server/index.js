@@ -1,6 +1,7 @@
 require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
+
 const Inventory = require("./routes/inventory.routes");
 
 const Supliers = require("./routes/supliers.routes");

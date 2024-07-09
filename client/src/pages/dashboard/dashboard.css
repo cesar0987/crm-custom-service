@@ -1,24 +1,35 @@
 .dashboardContainer {
   display: flex;
-  flex-direction: column;
   height: 100vh;
   width: 100%;
 }
 
 .dashboardContainer .leftPanel {
   display: flex;
-  flex-direction: column;
   height: 100%;
-  width: 300px;
+  width: 60%;
+  align-items: center;
+  margin-left: 120px;
+  flex-wrap: wrap;
 }
 
 .dashboardContainer .leftPanel .salesSumary {
   display: flex;
-  flex-direction: row;
-  height: 50px;
-  width: 720px;
-  justify-content: space-between;
-  border: 1px solid #e0e0e0;
+  height: 120px;
+  width: 800px;
+  gap: 40px;
+}
+
+.dashboardContainer .leftPanel .salesSumary span {
+  display: flex;
+  width: 200px;
+  height: 100px;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  font-weight: 700;
+  background-color: white;
+  border-radius: 30px;
 }
 
 .dashboardContainer .rightPanel {
@@ -31,7 +42,8 @@
 }
 
 #salesChart {
+  display: flex;
   height: 300px;
-  width: 100%;
+  width: 800px;
   border: 1px solid #e0e0e0;
 }

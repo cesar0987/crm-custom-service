@@ -33,6 +33,12 @@ export const BarChart = () => {
         backgroundColor: "rgb(0, 255, 255)",
         border: "rgba(255, 99, 132, 1)",
       },
+      {
+        label: "Orders",
+        data: [28, 48, 40, 19, 86, 27, 90],
+        backgroundColor: "rgb(255, 99, 132)",
+        border: "rgba(255, 99, 132, 1)",
+      },
     ],
   };
 
