@@ -12,8 +12,6 @@ export const AvatarSection = () => {
   const handleLogout = () => {
     cookies.remove("token");
     cookies.remove("user");
-    localStorage.removeItem("token");
-    localStorage.removeItem("user");
     window.location.href = "/login";
   };
   return (

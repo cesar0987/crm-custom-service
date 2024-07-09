@@ -20,7 +20,7 @@ export const Login = ({ setIsAuthenticated }) => {
         email,
         password,
       });
-      localStorage.setItem("token", res.data.token);
+      cookies.set("token", res.data.token, { maxAge: 3600 });
       navigate("/");
     } catch (err) {
       console.error(err);
@@ -53,8 +53,7 @@ export const Login = ({ setIsAuthenticated }) => {
             className="inputField"
           />
           <button type="submit" className="button">
-            {" "}
-            LOGIN{" "}
+            LOGIN
           </button>
         </form>
       </div>
