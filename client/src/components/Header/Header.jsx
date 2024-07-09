@@ -1,6 +1,7 @@
 import "./Header.css";
 import { useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
+import Logo from "../../Assets/Logo.png";
 export const Header = () => {
   const location = useLocation();
   const [exchangeMoney, setExchangeMoney] = useState([]);
@@ -24,8 +25,7 @@ export const Header = () => {
   return (
     <div className="headerContainer">
       <div className="headerTitle">
-        <h1>Terracota Shoes</h1>
-        <h2>Inventory Management System</h2>
+        <img src={Logo} alt="Logo" />
       </div>
       {/*    <div className="headerExchange">
         <h3>Exchange Money</h3>
