@@ -1,15 +1,28 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import '../SupliersSearchBar/SupliersSearchBar.css'
+import '../SupliersSearchBar/SupliersSearchBar.css';
+import axios from "axios";
 
 
-export const SupliersSearchBar = () => {
+export const SupliersSearchBar = ({setSearchResultados}) => {
+  const [consulta, setConsulta]= useState('');
+
+const handleSearch = async (e) =>{
+  e.preventDefault();
+  try{
+    const respuesta = await axios.get(`http://localhost:8000/api/supliers/search?name=${consulta}`)
+    setSearchResultados(respuesta.data);
+  } catch(err){
+    console.error("Error when searching for supplier",err);
+  }
+}
+
+
   return (
     <div className="searchBar1">
       <div className="searchBarContain1">
         <span>Supliers</span>
-
-        <form class="max-w-md mx-auto">
+        <form class="max-w-md mx-auto" onSubmit={handleSearch}>
           <label
             for="default-search"
             class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white"
@@ -38,8 +51,10 @@ export const SupliersSearchBar = () => {
               type="search"
               id="default-search"
               class="block w-80 p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-              placeholder="Search Mockups, Logos..."
-              required
+              value={consulta}
+              onChange={(e) => setConsulta(e.target.value)}
+              placeholder="Search providers by name"
+              
             />
             <button
               type="submit"
@@ -47,6 +62,7 @@ export const SupliersSearchBar = () => {
             >
               Search
             </button>
+          
           </div>
         </form>
         <Link to='/agregar/supliers'>

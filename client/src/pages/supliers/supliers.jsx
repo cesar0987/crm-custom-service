@@ -58,7 +58,7 @@ export const Supliers = ({removeFromDom}) => {
 
   return (
     <div className="supliersContainer">
-      <SupliersSearchBar />
+      <SupliersSearchBar setSearchResultados={setSuplier} />
       <table>
         <thead>
           <tr>

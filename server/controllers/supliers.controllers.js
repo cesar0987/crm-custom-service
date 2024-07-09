@@ -1,5 +1,16 @@
 const Supliers = require("../models/supliers.models");
 
+exports.searchSuppliers = async (req, res) => {
+  try {
+    const name = req.query.name.trim(); // Limpia la entrada
+    // Verifica que se esté buscando por 'name' y no por '_id'
+    const supliers = await Supliers.find({ name: { $regex: name, $options: 'i' } });
+    res.json(supliers);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+};
+////////////////////////////
 module.exports.getAllSupliers = (req, res) => {
   Supliers.find()
     .then((allSupliers) => {
