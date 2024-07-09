@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { jsPDF } from "jspdf";
 import "jspdf-autotable";
+import Modal from "react-modal";
 import "./salesorder.css";
 import Next from "Assets/Next.svg";
 import Previous from "Assets/Previous.svg";
+import logo from "Assets/Logo.png";
+import "./modal.css";
 import { AvatarSection, QuickActions } from "components";
 
 export const SalesOrder = () => {
@@ -12,6 +15,13 @@ export const SalesOrder = () => {
   const [purchased, setPurchased] = useState({});
   const [currentPage, setCurrentPage] = useState(1);
   const [productsPerPage] = useState(12);
+
+  // Estado para los datos del modal
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [emissionDate, setEmissionDate] = useState("");
+  const [businessName, setBusinessName] = useState("");
+  const [ruc, setRuc] = useState("");
+  const [address, setAddress] = useState("");
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -48,6 +58,14 @@ export const SalesOrder = () => {
     return price.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ".");
   };
 
+  const openModal = () => {
+    setModalIsOpen(true);
+  };
+
+  const closeModal = () => {
+    setModalIsOpen(false);
+  };
+
   const generatePDF = () => {
     const doc = new jsPDF();
     const tableColumn = [
@@ -61,7 +79,7 @@ export const SalesOrder = () => {
 
     let total = 0;
 
-    // Calcular y agregar filas para el PDF
+    // Calcular y agregar filas para la PDF
     selectedProducts.forEach((product) => {
       const quantity = purchased[product._id] || 0;
       const totalPrice = product.price * quantity;
@@ -78,17 +96,60 @@ export const SalesOrder = () => {
       total += totalPrice;
     });
 
-    // Generar el PDF con los datos recopilados
-    doc.text("Grupo 5", 50, 5);
-    doc.autoTable(tableColumn, tableRows, { startY: 20 });
-    doc.text(
-      `Total: Gs ${total.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ".")}`,
-      14,
-      doc.autoTable.previous.finalY + 10
-    );
+    // Agregar fila de total al final de la tabla
+    const totalRow = [
+      "",
+      "",
+      "",
+      "Total:",
+      formatPrice(total),
+    ];
+    tableRows.push(totalRow);
+
+    // Añadir rectángulo azul oscuro detrás del encabezado
+    doc.setFillColor(0, 51, 102); // Establecer color azul oscuro
+    doc.rect(0, 0, doc.internal.pageSize.width, 20, 'F'); // Dibujar rectángulo desde (0, 0) hasta el ancho de la página con altura 20
+
+    doc.addImage(logo, 'png', 140, 2, 40, 15);
+    doc.setFont('custom', 'bold');
+    doc.setFontSize(10);
+    doc.setTextColor('white');
+    doc.text("RUC: 123456", 10, 8);
+    doc.text("Timbrado: 1155789", 10, 12);
+    doc.text("Inicio de vigencia: 05/07/2024", 10, 16);
+    doc.text("Av. Caballero entre Ayolas y Oleary", 60, 8);
+    doc.text("Encarnación - Paraguay", 60, 12);
+    doc.text("www.manceg.com.py", 60, 16);
+
+   
+  
+
+    // Generar la tabla y obtener la posición final de la misma
+    const startY = 25; // Ajusta esta posición según sea necesario
+    doc.autoTable(tableColumn, tableRows, { startY });
+
+    // Obtener la ubicación final de la tabla
+    const endY = doc.autoTable.previous.finalY;
+    const totalY = endY - startY; 
+
+     // Mostrar los datos del modal en el PDF
+     doc.setFillColor(0, 51, 102);
+     doc.rect(0, 40 + totalY, doc.internal.pageSize.width, 20, 'F');
+     doc.setFont('custom', 'bold');
+     doc.setFontSize(12);
+     doc.setTextColor('white'); 
+     doc.text(`Fecha de Emisión: ${emissionDate}`, 15, 45 + totalY);
+     doc.text(`Razón Social: ${businessName}`, 15, 55 + totalY);
+     doc.text(`RUC: ${ruc}`, 85, 45 + totalY);
+     doc.text(`Dirección: ${address}`, 85, 55 + totalY);
+    
+    
+    
+
+    
 
     // Guardar el PDF
-    doc.save("grupo5.pdf");
+    doc.save(`emitido el ${emissionDate} factura de ${businessName}.pdf`);
 
     // Limpiar productos seleccionados después de generar el PDF
     setSelectedProducts([]);
@@ -100,7 +161,6 @@ export const SalesOrder = () => {
   const updateStock = async () => {
     const updatedProducts = selectedProducts.map((product) => ({
       _id: product._id,
-      // Asegurarse de enviar la cantidad correcta al servidor
       quantity: product.quantity,
     }));
 
@@ -225,7 +285,7 @@ export const SalesOrder = () => {
             <img src={Next} className="pages" alt="Next" />
           </button>
         </div>
-        <button className="btnBilling" onClick={generatePDF}>
+        <button className="btnBilling" onClick={openModal}>
           Generate Billing
         </button>
       </div>
@@ -233,6 +293,62 @@ export const SalesOrder = () => {
         <AvatarSection />
         <QuickActions />
       </div>
+
+      {/* Modal para la factura */}
+      <Modal
+        isOpen={modalIsOpen}
+        onRequestClose={closeModal}
+        contentLabel="Bill Information"
+        className="modal"
+        overlayClassName="overlay"
+      >
+        <h2>Bill Information</h2>
+        <form className="formModal">
+          <div className="form-group">
+            <label htmlFor="emissionDate">Emission Date</label>
+            <input
+              type="date"
+              id="emissionDate"
+              value={emissionDate}
+              onChange={(e) => setEmissionDate(e.target.value)}
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="businessName">Business Name</label>
+            <input
+              type="text"
+              id="businessName"
+              value={businessName}
+              onChange={(e) => setBusinessName(e.target.value)}
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="ruc">RUC</label>
+            <input
+              type="text"
+              id="ruc"
+              value={ruc}
+              onChange={(e) => setRuc(e.target.value)}
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="address">Address</label>
+            <textarea
+              id="address"
+              value={address}
+              onChange={(e) => setAddress(e.target.value)}
+            ></textarea>
+          </div>
+        </form>
+        <div className="modal-buttons">
+          <button className="btn btn-primary" onClick={generatePDF}>
+            Generate PDF
+          </button>
+          <button className="btn btn-secondary" onClick={closeModal}>
+            Cancel
+          </button>
+        </div>
+      </Modal>
     </div>
   );
 };

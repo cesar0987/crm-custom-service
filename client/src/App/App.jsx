@@ -48,7 +48,6 @@ const App = () => {
            <Route path="/update-product/:id" element={<UpdateProductPage addProduct={addProduct} />} />
 
           <Route element={<ProtectedRoutes />}>
-            <Route path="/agregar/supliers" element={<SuplierForm />} />
             <Route path="/editar/supliers" element={<SupliersEdit />} />
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/inventory" element={<Inventory />} />
