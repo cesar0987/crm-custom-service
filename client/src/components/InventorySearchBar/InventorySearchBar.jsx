@@ -1,13 +1,32 @@
 import React from "react";
 import "./InventorySearchBar.css";
 import { Link } from "react-router-dom";
-export const InventorySearchBar = () => {
+export const InventorySearchBar = (setSearchResultados) => {
+  const handleSearch = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await fetch("http://localhost:8000/api/products", {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      const data = await response.json();
+      setSearchResultados(data);
+      if (!response.ok) {
+        throw new Error("Something went wrong");
+      }
+    } catch (err) {
+      console.error("Error when searching for supplier", err);
+    }
+  };
+
   return (
     <div className="searchBar">
       <div className="searchBarContain">
         <span>Inventory</span>
 
-        <form class="max-w-md mx-auto">
+        <form class="max-w-md mx-auto" onSubmit={handleSearch}>
           <label
             for="default-search"
             class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white"
@@ -48,12 +67,12 @@ export const InventorySearchBar = () => {
           </div>
         </form>
         <Link to="/addProduct">
-        <button
-          type="button"
-          class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
-        >
-          New Product
-        </button>
+          <button
+            type="button"
+            class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
+          >
+            New Product
+          </button>
         </Link>
       </div>
     </div>
