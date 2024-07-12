@@ -2,6 +2,7 @@ import { useState} from "react";
 import axios from 'axios';
 import './SuplierForm.css';
 import { Link } from "react-router-dom";
+import backImg from "../../Assets/back.png"
 
 export const SuplierForm = () => {
     const [name, setName] = useState("");
@@ -70,6 +71,11 @@ export const SuplierForm = () => {
     };
 
     return (
+        <>
+            <div className="back">
+                <Link to="/" >
+                    <img src={backImg} alt="Back Icon"></img>
+                    BACK
         <div className="suplierCont">
             <h1 className="titulo">Add Supliers</h1>
             <form onSubmit={agregarSuplier} className="supplier-form">
@@ -162,9 +168,96 @@ export const SuplierForm = () => {
                 <Link to='/supliers'>
                 <button type="submit" id="btnCancelar">Cancel</button>
                 </Link>
-                </div>
-            </form>
-        </div>
+            </div>
+            <div className="suplierCont">
+                <h1 className="titulo">Add Supliers</h1>
+                <form onSubmit={agregarSuplier} className="supplier-form">
+                    <p>
+                        <label>Name</label><br />
+                        <input
+                            type="text"
+                            name="name"
+                            placeholder="Nombre"
+                            onChange={(e) => setName(e.target.value)}
+                            value={name}
+                        />
+                        {errors.name && <span className="error">{errors.name}</span>}
+                    </p>
+                    <p>
+                        <label>RUC</label><br />
+                        <input
+                            type="text"
+                            name="ruc"
+                            placeholder="RUC"
+                            onChange={(e) => setRuc(e.target.value)}
+                            value={ruc}
+                        />
+                        {errors.ruc && <span className="error">{errors.ruc}</span>}
+                    </p>
+                    <p>
+                        <label>Phone</label><br />
+                        <input
+                            type="number"
+                            name="phone"
+                            placeholder="Telefono"
+                            onChange={(e) => setPhone(e.target.value)}
+                            value={phone}
+                        />
+                        {errors.phone && <span className="error">{errors.phone}</span>}
+                    </p>
+                    <p>
+                        <label>Address</label><br />
+                        <input
+                            type="text"
+                            name="address"
+                            placeholder="Direccion"
+                            onChange={(e) => setAddress(e.target.value)}
+                            value={address}
+                        />
+                        {errors.address && <span className="error">{errors.address}</span>}
+                    </p>
+                    <p>
+                        <label>Mail</label><br />
+                        <input
+                            type="text"
+                            name="mail"
+                            placeholder="Correo electronico"
+                            onChange={(e) => setMail(e.target.value)}
+                            value={mail}
+                        />
+                        {errors.mail && <span className="error">{errors.mail}</span>}
+                    </p>
+                    <p>
+                        <label>Postal Code</label><br />
+                        <input
+                            type="number"
+                            name="postalCode"
+                            placeholder="Codigo Postal"
+                            onChange={(e) => setPostalCode(e.target.value)}
+                            value={postalCode}
+                        />
+                        {errors.postalCode && <span className="error">{errors.postalCode}</span>}
+                    </p>
+                    <p>
+                        <label>Sitio Web</label><br />
+                        <input
+                            type="text"
+                            name="sitioWep"
+                            placeholder="Sitio Web"
+                            onChange={(e) => setSitioWep(e.target.value)}
+                            value={sitioWep}
+                        />
+                    </p>
+                    <div className="cont">
+                    <button type="submit">Add Suppliers</button>
+                    {errors.api && <span className="error">{errors.api}</span>}
+                    <Link to='/supliers'>
+                    <button type="submit" id="btnCancelar">Cancel</button>
+                    </Link>
+                    </div>
+                </form>
+            </div>
+        </>
     );
 };
 

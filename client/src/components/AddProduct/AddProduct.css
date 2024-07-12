@@ -1,3 +1,18 @@
+.back :link{
+  display: flex;
+  flex-direction: row;
+  font-size: 10px !important;
+  font-weight: bold !important;
+  margin-left: 10px;
+  margin-top: 10px;
+}
+
+.back a{
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
 .addContainer {
   display: flex;
   width: 100%;
