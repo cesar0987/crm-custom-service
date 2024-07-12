@@ -40,15 +40,6 @@ export const Header = () => {
           <p>ARS: {exchangeMoney[2]?.salePrice}Gs</p>
         </div>
       </div>  */}
-      <form>
-        {location.pathname === "/" ? (
-          <>
-            {" "}
-            <input type="text" placeholder="Search" />{" "}
-            <button type="submit">Search</button>
-          </>
-        ) : null}
-      </form>
     </div>
   );
 };
