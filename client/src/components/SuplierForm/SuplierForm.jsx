@@ -76,105 +76,15 @@ export const SuplierForm = () => {
                 <Link to="/" >
                     <img src={backImg} alt="Back Icon"></img>
                     BACK
-        <div className="suplierCont">
-            <h1 className="titulo">Add Supliers</h1>
-            <form onSubmit={agregarSuplier} className="supplier-form">
-                <p>
-                    <label>Name</label><br />
-                    <input
-                        className="inputForm"
-                        type="text"
-                        name="name"
-                        placeholder="Nombre"
-                        onChange={(e) => setName(e.target.value)}
-                        value={name}
-                    />
-                    {errors.name && <span className="error">{errors.name}</span>}
-                </p>
-                <p>
-                    <label>RUC</label><br />
-                    <input
-                        className="inputForm"
-                        type="text"
-                        name="ruc"
-                        placeholder="RUC"
-                        onChange={(e) => setRuc(e.target.value)}
-                        value={ruc}
-                    />
-                    {errors.ruc && <span className="error">{errors.ruc}</span>}
-                </p>
-                <p>
-                    <label>Phone</label><br />
-                    <input
-                        className="inputForm"
-                        type="number"
-                        name="phone"
-                        placeholder="Telefono"
-                        onChange={(e) => setPhone(e.target.value)}
-                        value={phone}
-                    />
-                    {errors.phone && <span className="error">{errors.phone}</span>}
-                </p>
-                <p>
-                    <label>Address</label><br />
-                    <input
-                        className="inputForm"
-                        type="text"
-                        name="address"
-                        placeholder="Direccion"
-                        onChange={(e) => setAddress(e.target.value)}
-                        value={address}
-                    />
-                    {errors.address && <span className="error">{errors.address}</span>}
-                </p>
-                <p>
-                    <label>Mail</label><br />
-                    <input
-                        className="inputForm"
-                        type="text"
-                        name="mail"
-                        placeholder="Correo electronico"
-                        onChange={(e) => setMail(e.target.value)}
-                        value={mail}
-                    />
-                    {errors.mail && <span className="error">{errors.mail}</span>}
-                </p>
-                <p>
-                    <label>Postal Code</label><br />
-                    <input
-                        className="inputForm"
-                        type="number"
-                        name="postalCode"
-                        placeholder="Codigo Postal"
-                        onChange={(e) => setPostalCode(e.target.value)}
-                        value={postalCode}
-                    />
-                    {errors.postalCode && <span className="error">{errors.postalCode}</span>}
-                </p>
-                <p>
-                    <label>Sitio Web</label><br />
-                    <input
-                        className="inputForm"
-                        type="text"
-                        name="sitioWep"
-                        placeholder="Sitio Web"
-                        onChange={(e) => setSitioWep(e.target.value)}
-                        value={sitioWep}
-                    />
-                </p>
-                <div className="cont">
-                <button type="submit">Add Suppliers</button>
-                {errors.api && <span className="error">{errors.api}</span>}
-                <Link to='/supliers'>
-                <button type="submit" id="btnCancelar">Cancel</button>
                 </Link>
             </div>
             <div className="suplierCont">
                 <h1 className="titulo">Add Supliers</h1>
                 <form onSubmit={agregarSuplier} className="supplier-form">
                     <p>
-                        <label>Name</label><br />
+                        <label>Name</label>
                         <input
+                            className="inputForm"
                             type="text"
                             name="name"
                             placeholder="Nombre"
@@ -184,8 +94,9 @@ export const SuplierForm = () => {
                         {errors.name && <span className="error">{errors.name}</span>}
                     </p>
                     <p>
-                        <label>RUC</label><br />
+                        <label>RUC</label>
                         <input
+                            className="inputForm"
                             type="text"
                             name="ruc"
                             placeholder="RUC"
@@ -195,8 +106,9 @@ export const SuplierForm = () => {
                         {errors.ruc && <span className="error">{errors.ruc}</span>}
                     </p>
                     <p>
-                        <label>Phone</label><br />
+                        <label>Phone</label>
                         <input
+                            className="inputForm"
                             type="number"
                             name="phone"
                             placeholder="Telefono"
@@ -206,8 +118,9 @@ export const SuplierForm = () => {
                         {errors.phone && <span className="error">{errors.phone}</span>}
                     </p>
                     <p>
-                        <label>Address</label><br />
+                        <label>Address</label>
                         <input
+                            className="inputForm"
                             type="text"
                             name="address"
                             placeholder="Direccion"
@@ -217,8 +130,9 @@ export const SuplierForm = () => {
                         {errors.address && <span className="error">{errors.address}</span>}
                     </p>
                     <p>
-                        <label>Mail</label><br />
+                        <label>Mail</label>
                         <input
+                            className="inputForm"
                             type="text"
                             name="mail"
                             placeholder="Correo electronico"
@@ -228,8 +142,9 @@ export const SuplierForm = () => {
                         {errors.mail && <span className="error">{errors.mail}</span>}
                     </p>
                     <p>
-                        <label>Postal Code</label><br />
+                        <label>Postal Code</label>
                         <input
+                            className="inputForm"
                             type="number"
                             name="postalCode"
                             placeholder="Codigo Postal"
@@ -239,8 +154,9 @@ export const SuplierForm = () => {
                         {errors.postalCode && <span className="error">{errors.postalCode}</span>}
                     </p>
                     <p>
-                        <label>Sitio Web</label><br />
+                        <label>Sitio Web</label>
                         <input
+                            className="inputForm"
                             type="text"
                             name="sitioWep"
                             placeholder="Sitio Web"
@@ -249,11 +165,11 @@ export const SuplierForm = () => {
                         />
                     </p>
                     <div className="cont">
-                    <button type="submit">Add Suppliers</button>
-                    {errors.api && <span className="error">{errors.api}</span>}
-                    <Link to='/supliers'>
-                    <button type="submit" id="btnCancelar">Cancel</button>
-                    </Link>
+                        <button type="submit">Add Suppliers</button>
+                        {errors.api && <span className="error">{errors.api}</span>}
+                        <Link to='/supliers'>
+                        <button type="submit" id="btnCancelar">Cancel</button>
+                        </Link>
                     </div>
                 </form>
             </div>
