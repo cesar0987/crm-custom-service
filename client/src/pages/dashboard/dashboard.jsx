@@ -96,7 +96,7 @@ export const Dashboard = () => {
             <BarChart />
           </span>
         </div>
-        <div className="lastetProductsDashboard">
+        <div className="lastestProductsDashboard">
           <div className="lastestProducts">
             <span>
               <b>Lastest Products</b>
@@ -111,7 +111,6 @@ export const Dashboard = () => {
                 </tr>
               </thead>
               <tbody>
-                <tbody>
                   {products
                     .sort((a, b) => new Date(b.date) - new Date(a.date))
                     .slice(0, 5)
@@ -123,7 +122,6 @@ export const Dashboard = () => {
                         <td>{product.ref}</td>
                       </tr>
                     ))}
-                </tbody>
               </tbody>
             </table>
           </div>
