@@ -35,17 +35,6 @@ export const Nav = () => {
           <img src={reportsImg} alt="Report Icon" />
           <Link to="/reports">Reports</Link>
         </li>
-        <span>
-          <b>SUPPORT</b>
-        </span>
-        <li>
-          <img src={helpImg} alt="Help Icon" />
-          <Link to="/help">Help</Link>
-        </li>
-        <li>
-          <img src={settingImg} alt="Settings Icon" />
-          <Link to="/settings">Settings</Link>
-        </li>
       </ul>
     </nav>
   );

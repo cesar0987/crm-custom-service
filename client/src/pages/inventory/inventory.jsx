@@ -93,12 +93,12 @@ export const Inventory = () => {
                   <td>{product.ref}</td>
                   <td>{formatPrice(product.price)} Gs</td>
                   <td>{product.quantity}</td>
-                  <td>
+                  <td className="buttons">
                     <div>
-                      <button  onClick={() => navigate(`/update-product/${product._id}`)}>Edit</button>
+                      <button  onClick={() => navigate(`/update-product/${product._id}`)} className="edit">Edit</button>
                     </div>
                     <div>
-                      <button>Delete</button>
+                      <button className="delete">Delete</button>
                     </div>
                   </td>
                 </tr>
