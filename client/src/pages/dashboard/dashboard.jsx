@@ -41,6 +41,33 @@ export const Dashboard = () => {
     });
     return count;
   };
+  const currencyFormat = (num) => {
+    return (
+      Number(num)
+        .toFixed(0)
+        .replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1.") + " GS"
+    );
+  };
+
+  const calculateNetIncome = () => {
+    let total = 0;
+    products.map((product) => {
+      total += product.price * product.quantity;
+      return total;
+    });
+    return total;
+  };
+
+  const calculateTotalSales = () => {
+    let total = 0;
+    products.map((product) => {
+      if (product.quantity === 0) {
+        total += product.price;
+      }
+      return total;
+    });
+    return total;
+  };
 
   console.log("Products quantity", countProducts());
   return (
@@ -48,16 +75,15 @@ export const Dashboard = () => {
       <div className="leftPanel">
         <div className="salesSumary">
           <span>
-            <b>Today Sales</b>
-          </span>
-          <span>
             <b>Yearly Total Sales</b>
+            {currencyFormat(calculateTotalSales())}
           </span>
           <span>
             <b>Net Income</b>
+            {currencyFormat(calculateNetIncome())}
           </span>
           <span>
-            <b>Product</b>
+            <b>Products</b>
             <p>{countProducts()}</p>
           </span>
         </div>
@@ -70,53 +96,37 @@ export const Dashboard = () => {
             <BarChart />
           </span>
         </div>
-        <div className="salesOrderDashboard">
-          <span>
-            <b>Sales Order</b>
-          </span>
-          <table>
-            <thead>
-              <tr>
-                <th>Ref</th>
-                <th>Name</th>
-                <th>Price</th>
-                <th>Stock</th>
-              </tr>
-            </thead>
-
-            <tbody>
-              <tr>
-                <td>1</td>
-                <td>Product 1</td>
-                <td>1000</td>
-                <td>10</td>
-              </tr>
-              <tr>
-                <td>2</td>
-                <td>Product 2</td>
-                <td>2000</td>
-                <td>20</td>
-              </tr>
-              <tr>
-                <td>3</td>
-                <td>Product 3</td>
-                <td>3000</td>
-                <td>30</td>
-              </tr>
-              <tr>
-                <td>4</td>
-                <td>Product 4</td>
-                <td>4000</td>
-                <td>40</td>
-              </tr>
-              <tr>
-                <td>5</td>
-                <td>Product 5</td>
-                <td>5000</td>
-                <td>50</td>
-              </tr>
-            </tbody>
-          </table>
+        <div className="lastetProductsDashboard">
+          <div className="lastestProducts">
+            <span>
+              <b>Lastest Products</b>
+            </span>
+            <table>
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Price</th>
+                  <th>Stock</th>
+                  <th>Ref</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tbody>
+                  {products
+                    .sort((a, b) => new Date(b.date) - new Date(a.date))
+                    .slice(0, 5)
+                    .map((product) => (
+                      <tr key={product.id}>
+                        <td>{product.name}</td>
+                        <td>{product.price}</td>
+                        <td>{product.quantity}</td>
+                        <td>{product.ref}</td>
+                      </tr>
+                    ))}
+                </tbody>
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
       <div className="rightPanel">

@@ -34,6 +34,39 @@
   border: 3px solid #e0e0e0;
 }
 
+.dashboardContainer .leftPanel .lastetProductsDashboard {
+  display: flex;
+  box-sizing: border-box;
+  margin-left: 250px;
+  flex-direction: column;
+  gap: 10px;
+  height: 300px;
+  width: 700px;
+}
+
+.dashboardContainer .leftPanel .lastestProducts table {
+  width: 500px;
+  border-collapse: separate;
+  border-spacing: 0 10px;
+  border: none;
+}
+
+.dashboardContainer .leftPanel .lastestProducts th {
+  background-color: #2c7bc9;
+  color: white;
+}
+
+.dashboardContainer .leftPanel .lastestProducts tr {
+  background-color: #ced4da;
+  border: none;
+  border-radius: 20px;
+}
+
+.dashboardContainer .leftPanel .lastestProducts td {
+  text-align: center;
+  border: none;
+}
+
 .dashboardContainer .rightPanel {
   display: flex;
   position: absolute;
@@ -41,11 +74,4 @@
   flex-direction: column;
   height: 100%;
   width: 300px;
-}
-
-#salesChart {
-  display: flex;
-  height: 300px;
-  width: 800px;
-  border: 1px solid #e0e0e0;
 }
