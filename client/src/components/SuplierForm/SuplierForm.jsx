@@ -76,6 +76,7 @@ export const SuplierForm = () => {
                 <p>
                     <label>Name</label><br />
                     <input
+                        className="inputForm"
                         type="text"
                         name="name"
                         placeholder="Nombre"
@@ -87,6 +88,7 @@ export const SuplierForm = () => {
                 <p>
                     <label>RUC</label><br />
                     <input
+                        className="inputForm"
                         type="text"
                         name="ruc"
                         placeholder="RUC"
@@ -98,6 +100,7 @@ export const SuplierForm = () => {
                 <p>
                     <label>Phone</label><br />
                     <input
+                        className="inputForm"
                         type="number"
                         name="phone"
                         placeholder="Telefono"
@@ -109,6 +112,7 @@ export const SuplierForm = () => {
                 <p>
                     <label>Address</label><br />
                     <input
+                        className="inputForm"
                         type="text"
                         name="address"
                         placeholder="Direccion"
@@ -120,6 +124,7 @@ export const SuplierForm = () => {
                 <p>
                     <label>Mail</label><br />
                     <input
+                        className="inputForm"
                         type="text"
                         name="mail"
                         placeholder="Correo electronico"
@@ -131,6 +136,7 @@ export const SuplierForm = () => {
                 <p>
                     <label>Postal Code</label><br />
                     <input
+                        className="inputForm"
                         type="number"
                         name="postalCode"
                         placeholder="Codigo Postal"
@@ -142,6 +148,7 @@ export const SuplierForm = () => {
                 <p>
                     <label>Sitio Web</label><br />
                     <input
+                        className="inputForm"
                         type="text"
                         name="sitioWep"
                         placeholder="Sitio Web"
