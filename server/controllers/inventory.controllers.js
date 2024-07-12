@@ -1,6 +1,18 @@
 const Product = require("../models/inventory.models");
 const moment = require("moment");
 
+exports.searchProduct = async (req, res) => {
+  try {
+    const name = req.query.name.trim(); // Limpia la entrada
+    // Verifica que se esté buscando por 'name' y no por '_id'
+    const product = await Product.find({ name: { $regex: name, $options: 'i' } });
+    res.json(product);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+};
+
+
 module.exports.getAllProducts = (req, res) => {
   Product.find()
     .then((allProducts) => {

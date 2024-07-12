@@ -74,7 +74,7 @@ export const Inventory = () => {
   return (
     <div className="inventoryContainer">
       <div className="leftPanel">
-        <InventorySearchBar />
+        <InventorySearchBar setSearchResultados={setProducts} />
         <div className="productList">
           <table>
             <thead>

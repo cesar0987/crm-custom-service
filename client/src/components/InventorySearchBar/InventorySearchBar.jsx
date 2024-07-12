@@ -1,18 +1,17 @@
 import React from "react";
 import "./InventorySearchBar.css";
 import { Link } from "react-router-dom";
-export const InventorySearchBar = (setSearchResultados) => {
+import { useState} from "react";
+import axios from "axios";
+
+export const InventorySearchBar = ({setSearchResultados}) => {
+  const [consulta, setConsulta] = useState('');
+
   const handleSearch = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch("http://localhost:8000/api/products", {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
-      const data = await response.json();
-      setSearchResultados(data);
+      const response = await axios.get(`http://localhost:8000/api/products/search?name=${consulta}`)
+      setSearchResultados(response.data);
       if (!response.ok) {
         throw new Error("Something went wrong");
       }
@@ -52,11 +51,12 @@ export const InventorySearchBar = (setSearchResultados) => {
               </svg>
             </div>
             <input
+            value={consulta}
+            onChange={(e) => setConsulta(e.target.value)}
               type="search"
               id="default-search"
               class="block w-80 p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
               placeholder="Search Mockups, Logos..."
-              required
             />
             <button
               type="submit"
