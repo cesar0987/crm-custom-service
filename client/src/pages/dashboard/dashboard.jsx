@@ -75,7 +75,7 @@ export const Dashboard = () => {
       <div className="leftPanel">
         <div className="salesSumary">
           <span>
-            <b>Yearly Total Sales</b>
+            <b>Monthly Total Sales</b>
             {currencyFormat(calculateTotalSales())}
           </span>
           <span>
