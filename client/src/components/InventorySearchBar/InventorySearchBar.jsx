@@ -6,19 +6,18 @@ import axios from "axios";
 
 export const InventorySearchBar = ({setSearchResultados}) => {
   const [consulta, setConsulta] = useState('');
+  const [message, setMessage] = useState('');
 
   const handleSearch = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.get(`http://localhost:8000/api/products/search?name=${consulta}`)
-      setSearchResultados(response.data);
-      if (!response.ok) {
-        throw new Error("Something went wrong");
-      }
-    } catch (err) {
-      console.error("Error when searching for supplier", err);
+      const respuesta = await axios.get(`http://localhost:8000/api/products/search?name=${consulta}`)
+      setSearchResultados(respuesta.data);
+      setMessage('');
+    } catch(err){
+      setMessage('The product was not found');
     }
-  };
+  }
 
   return (
     <div className="searchBar">
@@ -65,6 +64,9 @@ export const InventorySearchBar = ({setSearchResultados}) => {
               Search
             </button>
           </div>
+       
+            {message && <p className="message-text">{message}</p>}
+          
         </form>
         <Link to="/addProduct">
           <button
