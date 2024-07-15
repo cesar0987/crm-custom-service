@@ -1,3 +1,6 @@
+
+
+
 export { InventorySearchBar } from "./InventorySearchBar/InventorySearchBar";
 export { Nav } from "./Nav/Nav";
 export { Header } from "./Header/Header";
@@ -7,4 +10,5 @@ export { AvatarSection } from "./AvatarSection/AvatarSection";
 export { QuickActions } from "./QuickActions/QuickActions";
 export { AddProduct } from "./AddProduct/AddProduct";
 export { BarChart } from "./BarChart/BarChart";
-export { SuplierForm } from "./SuplierForm/SuplierForm";
+export {SuplierForm} from "../components/SuplierForm/SuplierForm"
+export { SupliersEdit} from "./SupliersEdit/SupliersEdit";

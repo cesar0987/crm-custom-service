@@ -1,31 +1,27 @@
-import React from "react";
-import "./InventorySearchBar.css";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
-export const InventorySearchBar = (setSearchResultados) => {
-  const handleSearch = async (e) => {
-    e.preventDefault();
-    try {
-      const response = await fetch("http://localhost:8000/api/products", {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
-      const data = await response.json();
-      setSearchResultados(data);
-      if (!response.ok) {
-        throw new Error("Something went wrong");
-      }
-    } catch (err) {
-      console.error("Error when searching for supplier", err);
-    }
-  };
+import '../SupliersSearchBar/SupliersSearchBar.css';
+import axios from "axios";
+
+
+export const SupliersSearchBar = ({setSearchResultados}) => {
+  const [consulta, setConsulta]= useState('');
+
+const handleSearch = async (e) =>{
+  e.preventDefault();
+  try{
+    const respuesta = await axios.get(`http://localhost:8000/api/supliers/search?name=${consulta}`)
+    setSearchResultados(respuesta.data);
+  } catch(err){
+    console.error("Error when searching for supplier",err);
+  }
+}
+
 
   return (
-    <div className="searchBar">
-      <div className="searchBarContain">
-        <span>Inventory</span>
-
+    <div className="searchBar1">
+      <div className="searchBarContain1">
+        <span>Supliers</span>
         <form class="max-w-md mx-auto" onSubmit={handleSearch}>
           <label
             for="default-search"
@@ -55,8 +51,10 @@ export const InventorySearchBar = (setSearchResultados) => {
               type="search"
               id="default-search"
               class="block w-80 p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-              placeholder="Search Mockups, Logos..."
-              required
+              value={consulta}
+              onChange={(e) => setConsulta(e.target.value)}
+              placeholder="Search providers by name"
+              
             />
             <button
               type="submit"
@@ -64,15 +62,16 @@ export const InventorySearchBar = (setSearchResultados) => {
             >
               Search
             </button>
+          
           </div>
         </form>
-        <Link to="/addProduct">
-          <button
-            type="button"
-            class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
-          >
-            New Product
-          </button>
+        <Link to='/agregar/supliers'>
+        <button
+          type="button"
+          class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
+        >
+          New Suppliers
+        </button>
         </Link>
       </div>
     </div>

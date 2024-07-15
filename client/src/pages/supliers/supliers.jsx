@@ -1,13 +1,27 @@
-import '../supliers/supliers.css';
+import '../supliers/supliers.css'
+
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import axios from 'axios';
+import { SupliersSearchBar } from 'components/SupliersSearchBar/SupliersSearchBar';
 
-
-export const Supliers = () => {
+export const Supliers = ({removeFromDom}) => {
   const [supliers, setSuplier] = useState([]);
   const [loaded, setLoaded] = useState(true);
   const [error, setError] = useState(null);
 
+  const deleteSupliers = (suplierId)=>{
+    axios.delete('http://localhost:8000/api/eliminar/supliers/' +suplierId)
+    .then(res =>{
+      if(removeFromDom){
+        removeFromDom(suplierId);
+      }else{
+        setSuplier(supliers.filter(suplier => suplier._id !== suplierId));
+      }
+    })
+    .catch(error => console.error('Error al eliminar proveedor', error))
+  }
+    
   useEffect(() => {
     const fetchSupliers = async () => {
       try {
@@ -28,6 +42,7 @@ export const Supliers = () => {
       } finally {
         setLoaded(false);
       }
+
     };
 
     fetchSupliers();
@@ -43,17 +58,7 @@ export const Supliers = () => {
 
   return (
     <div className="supliersContainer">
-      <h1>Supliers</h1>
-
-      <div >
-        <Link to='/agregar/supliers'>
-        <button className='btn'>
-          Add Supliers
-        </button>
-        </Link>
-
-      </div>
-
+      <SupliersSearchBar setSearchResultados={setSuplier} />
       <table>
         <thead>
           <tr>
@@ -64,6 +69,7 @@ export const Supliers = () => {
             <th>Mail</th>
             <th>Postal Code</th>
             <th>Sitio Web</th>
+            <th>Actions</th>
           </tr>
         </thead>
         <tbody>
@@ -76,6 +82,17 @@ export const Supliers = () => {
               <td>{suplier.mail}</td>
               <td>{suplier.postalCode}</td>
               <td>{suplier.sitioWep}</td>
+              <td>
+                <div className="table-buttons">
+              <Link to={`/actualizar/supliers/${suplier._id}`}>
+              <button className="edit-button">Edit</button>
+              </Link>
+              
+                <button className="delete-button"  onClick={()=> deleteSupliers(suplier._id)}>
+                  Delete
+                </button>
+              </div>
+              </td>
             </tr>
           ))}
         </tbody>
