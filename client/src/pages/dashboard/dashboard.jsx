@@ -111,17 +111,17 @@ export const Dashboard = () => {
                 </tr>
               </thead>
               <tbody>
-                  {products
-                    .sort((a, b) => new Date(b.date) - new Date(a.date))
-                    .slice(0, 5)
-                    .map((product) => (
-                      <tr key={product.id}>
-                        <td>{product.name}</td>
-                        <td>{product.price}</td>
-                        <td>{product.quantity}</td>
-                        <td>{product.ref}</td>
-                      </tr>
-                    ))}
+                {products
+                  .sort((a, b) => new Date(b.date) - new Date(a.date))
+                  .slice(0, 5)
+                  .map((product) => (
+                    <tr key={product.id}>
+                      <td>{product.name}</td>
+                      <td>{product.price}</td>
+                      <td>{product.quantity}</td>
+                      <td>{product.ref}</td>
+                    </tr>
+                  ))}
               </tbody>
             </table>
           </div>
