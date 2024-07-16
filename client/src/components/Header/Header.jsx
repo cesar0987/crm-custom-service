@@ -47,7 +47,7 @@ export const Header = () => {
     if (imgElement && imgElement.alt === "ARS Flag") {
       titleChangesMonetaryElement.style.gap = "142px";
     } else if (imgElement && imgElement.alt === "USD Flag") {
-      titleChangesMonetaryElement.style.gap = "165px";
+      titleChangesMonetaryElement.style.gap = "105px";
     } else {
       titleChangesMonetaryElement.style.gap = "160px";
     }
@@ -136,7 +136,11 @@ export const Header = () => {
       <form onSubmit={handleSubmit}>
         {location.pathname === "/" ? (
           <>
-            <button type="button" onClick={openModal}>
+            <button
+              type="button"
+              onClick={openModal}
+              className="btn btn-primary"
+            >
               Search
             </button>
             <Modal

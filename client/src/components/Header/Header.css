@@ -11,6 +11,17 @@
   width: 100%;
   border: 1px solid #ced4d9;
 }
+.btn {
+  background-color: #2c7bc9;
+  color: white;
+  border: none;
+  padding: 9px;
+  border-radius: 7px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 5px;
+}
 
 .headerContainer .headerTitle {
   display: flex;
@@ -50,30 +61,32 @@
   margin-top: 20px;
 }
 
-.purchase, .sale {
+.purchase,
+.sale {
   transition: opacity 0.5s ease-in-out;
   background-color: #ced4d9;
 }
 
-
-.purchase p, .sale p {
+.purchase p,
+.sale p {
   display: flex;
   align-items: center;
   font-size: 20px;
-  
 }
 
-.usFlag, .euFlag, .arFlag {
+.usFlag,
+.euFlag,
+.arFlag {
   height: 16px;
   margin: 0 5px;
 }
-.titleChangesMonetary{
+.titleChangesMonetary {
   display: flex;
-  background-color: #CED4D9;
+  background-color: #ced4d9;
 }
 
 /*Estilo modal*/
-.buttons-modal{
+.buttons-modal {
   display: flex;
   justify-content: center;
   gap: 20px;
