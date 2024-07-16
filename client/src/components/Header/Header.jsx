@@ -2,13 +2,13 @@ import "./Header.css";
 import { useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 import Logo from "../../Assets/Logo.png";
-import UsFlag from '../../Assets/estados unidos.svg';
-import EuFlag from '../../Assets/union europea.svg';
-import ArFlag from '../../Assets/argentina.svg';
+import UsFlag from "../../Assets/estados unidos.svg";
+import EuFlag from "../../Assets/union europea.svg";
+import ArFlag from "../../Assets/argentina.svg";
 import Modal from "react-modal";
 
 const flags = [UsFlag, EuFlag, ArFlag];
-const currencyNames = ['USD', 'EUR', 'ARS'];
+const currencyNames = ["USD", "EUR", "ARS"];
 
 export const Header = () => {
   const location = useLocation();
@@ -17,7 +17,7 @@ export const Header = () => {
   const [product, setProduct] = useState([]);
   const [showProduct, setShowProduct] = useState([]);
   const [modalIsOpen, setModalIsOpen] = useState(false);
-  const [searchTerm, setSearchTerm] = useState('');
+  const [searchTerm, setSearchTerm] = useState("");
 
   const handleExchangeMoney = async () => {
     const URL = "https://www.cambioschaco.com.py/api/branch_office/1/exchange";
@@ -40,14 +40,16 @@ export const Header = () => {
   }, []);
 
   useEffect(() => {
-    const imgElement = document.querySelector('.flag');
-    const titleChangesMonetaryElement = document.querySelector('.titleChangesMonetary');
-    if (imgElement && imgElement.alt === 'ARS Flag') {
-      titleChangesMonetaryElement.style.gap = '142px';
-    } else if (imgElement && imgElement.alt === 'USD Flag') {
-      titleChangesMonetaryElement.style.gap = '165px';
+    const imgElement = document.querySelector(".flag");
+    const titleChangesMonetaryElement = document.querySelector(
+      ".titleChangesMonetary"
+    );
+    if (imgElement && imgElement.alt === "ARS Flag") {
+      titleChangesMonetaryElement.style.gap = "142px";
+    } else if (imgElement && imgElement.alt === "USD Flag") {
+      titleChangesMonetaryElement.style.gap = "165px";
     } else {
-      titleChangesMonetaryElement.style.gap = '160px';
+      titleChangesMonetaryElement.style.gap = "160px";
     }
   }, [currentIndex]);
 
@@ -59,7 +61,7 @@ export const Header = () => {
       const data = await response.json();
       setProduct(data);
       console.log("dato productos", data);
-    }
+    };
 
     searchGeneral();
   }, []);
@@ -68,14 +70,16 @@ export const Header = () => {
     const value = e.target.value;
     setSearchTerm(value);
 
-    if (value.trim() === '') {
+    if (value.trim() === "") {
       setShowProduct([]);
     } else {
-      const searchProduct = product.filter((p) => p.name.toLowerCase().includes(value.toLowerCase()));
+      const searchProduct = product.filter((p) =>
+        p.name.toLowerCase().includes(value.toLowerCase())
+      );
       setShowProduct(searchProduct);
       console.log("Producto encontrado:", searchProduct);
     }
-  }
+  };
 
   const openModal = () => {
     setModalIsOpen(true);
@@ -88,7 +92,7 @@ export const Header = () => {
   const handleSubmit = (e) => {
     e.preventDefault(); // Evita que el formulario se envíe y recargue la página
     search(e);
-  }
+  };
 
   return (
     <div className="headerContainer">
@@ -104,26 +108,37 @@ export const Header = () => {
           <div className="exchange purchase">
             {exchangeMoney.length > 0 && (
               <p>
-                <img className="flag" src={flags[currentIndex]} alt={`${currencyNames[currentIndex]} Flag`} />
-                {currencyNames[currentIndex]}: {exchangeMoney[currentIndex]?.purchasePrice} Gs
+                <img
+                  className="flag"
+                  src={flags[currentIndex]}
+                  alt={`${currencyNames[currentIndex]} Flag`}
+                />
+                {currencyNames[currentIndex]}:{" "}
+                {exchangeMoney[currentIndex]?.purchasePrice} Gs
               </p>
             )}
           </div>
           <div className="exchange sale">
             {exchangeMoney.length > 0 && (
               <p>
-                <img className="flag" src={flags[currentIndex]} alt={`${currencyNames[currentIndex]} Flag`} />
-                {currencyNames[currentIndex]}: {exchangeMoney[currentIndex]?.salePrice} Gs
+                <img
+                  className="flag"
+                  src={flags[currentIndex]}
+                  alt={`${currencyNames[currentIndex]} Flag`}
+                />
+                {currencyNames[currentIndex]}:{" "}
+                {exchangeMoney[currentIndex]?.salePrice} Gs
               </p>
             )}
           </div>
         </div>
-
       </div>
       <form onSubmit={handleSubmit}>
         {location.pathname === "/" ? (
           <>
-            <button type="button" onClick={openModal}>Search</button>
+            <button type="button" onClick={openModal}>
+              Search
+            </button>
             <Modal
               isOpen={modalIsOpen}
               onRequestClose={closeModal}
@@ -131,14 +146,20 @@ export const Header = () => {
               className="modal"
               overlayClassName="overlay"
             >
-              <input 
+              <input
                 type="text"
                 placeholder="Search"
                 value={searchTerm}
                 onChange={search}
               />
               <div className="buttons-modal">
-                <button type="button" className="btn btn-secondary" onClick={closeModal}>Cancel</button>
+                <button
+                  type="button"
+                  className="btn btn-secondary"
+                  onClick={closeModal}
+                >
+                  Cancel
+                </button>
               </div>
               {showProduct.length > 0 && (
                 <div className="searchResult">
@@ -151,9 +172,6 @@ export const Header = () => {
           </>
         ) : null}
       </form>
-
-      </div>  */}
-
     </div>
   );
 };
