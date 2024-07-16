@@ -1,6 +1,7 @@
 
 
 
+
 export { InventorySearchBar } from "./InventorySearchBar/InventorySearchBar";
 export { Nav } from "./Nav/Nav";
 export { Header } from "./Header/Header";

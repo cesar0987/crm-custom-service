@@ -1,5 +1,5 @@
 import '../supliers/supliers.css'
-
+import Modal from 'components/Modal/Modal';
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import axios from 'axios';
@@ -9,6 +9,8 @@ export const Supliers = ({removeFromDom}) => {
   const [supliers, setSuplier] = useState([]);
   const [loaded, setLoaded] = useState(true);
   const [error, setError] = useState(null);
+  const [showModal, setShowModal] = useState(false);
+  const [currentSupliersId, setCurrentSupliersId] = useState(null);
 
   const deleteSupliers = (suplierId)=>{
     axios.delete('http://localhost:8000/api/eliminar/supliers/' +suplierId)
@@ -20,6 +22,17 @@ export const Supliers = ({removeFromDom}) => {
       }
     })
     .catch(error => console.error('Error al eliminar proveedor', error))
+  }
+
+  const handleDeleteClick = (suplierId) =>{
+    setCurrentSupliersId(suplierId);
+    setShowModal(true);
+  }
+
+  const handleConfirmDelete = () =>{
+    deleteSupliers(currentSupliersId);
+    setShowModal(null);
+    setCurrentSupliersId(null);
   }
     
   useEffect(() => {
@@ -88,7 +101,7 @@ export const Supliers = ({removeFromDom}) => {
               <button className="edit-button">Edit</button>
               </Link>
               
-                <button className="delete-button"  onClick={()=> deleteSupliers(suplier._id)}>
+                <button className='delete-button' onClick={()=> handleDeleteClick(suplier._id)}>
                   Delete
                 </button>
               </div>
@@ -97,6 +110,11 @@ export const Supliers = ({removeFromDom}) => {
           ))}
         </tbody>
       </table>
+      <Modal show={showModal}
+      onClose={() => setShowModal(false)}
+      onConfirm={handleConfirmDelete}>
+      <p>¿Estás seguro de que deseas eliminar este proveedor?</p>
+      </Modal>
     </div>
   );
 };
