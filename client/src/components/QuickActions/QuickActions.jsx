@@ -10,10 +10,10 @@ export const QuickActions = () => {
   return (
     <div className="QuickActions">
       <div className="quickActionsContainer">
-        <div className="quickAction">
+        {/*  <div className="quickAction">
           <img src={createOrder} alt="Create Order Icon" />
           <span>Create Order</span>
-        </div>
+        </div> */}
         <div className="quickAction">
           <img src={addSupplier} alt="Add Supplier Icon" />
           <Link to="/agregar/supliers">Add Supplier</Link>
@@ -22,10 +22,10 @@ export const QuickActions = () => {
           <img src={addProduct} alt="Add Product Icon" />
           <Link to="/addProduct">Add Product</Link>
         </div>
-        <div className="quickAction">
+        {/*    <div className="quickAction">
           <img src={exportProduct} alt="Export Icon" />
           <span>Export</span>
-        </div>
+        </div> */}
       </div>
     </div>
   );
