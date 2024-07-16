@@ -21,6 +21,8 @@ export const Login = ({ setIsAuthenticated }) => {
         password,
       });
       cookies.set("token", res.data.token, { maxAge: 3600 });
+      cookies.set("user", res.data.username, { maxAge: 3600 });
+
       navigate("/");
     } catch (err) {
       console.error(err);

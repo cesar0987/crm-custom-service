@@ -118,6 +118,7 @@ export const Header = () => {
             )}
           </div>
         </div>
+
       </div>
       <form onSubmit={handleSubmit}>
         {location.pathname === "/" ? (
@@ -150,6 +151,9 @@ export const Header = () => {
           </>
         ) : null}
       </form>
+
+      </div>  */}
+
     </div>
   );
 };

@@ -8,6 +8,7 @@
   height: 105px;
   border: 1px solid gray;
   background-color: #ced4d9;
+  box-sizing: border-box;
 }
 .UserOptions {
   width: 20px;

@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams, Link } from "react-router-dom";
 import "./AddProduct.css";
 import { AvatarSection, InventorySearchBar, QuickActions } from "components";
+import backImg from "../../Assets/back.png"
 
 export const AddProduct = ({ addProduct }) => {
   const [name, setName] = useState("");
@@ -104,86 +105,94 @@ export const AddProduct = ({ addProduct }) => {
   const mostRecentActivity = products.slice(0, 4);
 
   return (
-    <div className="addProductContainer">
-      <h1 className="addProductTitle"> Add Product </h1>
-      <form onSubmit={procesarForm} className="addProductForm">
-        <div className="formGroup">
-          <label> Name: </label>
-          <input
-            type="text"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-          />
-        </div>
-        <div className="formGroup">
-          <label> Price: </label>
-          <input
-            type="number"
-            value={price}
-            onChange={(e) => setPrice(e.target.value)}
-          />
-        </div>
-        <div className="formGroup">
-          <label> Quantity: </label>
-          <input
-            type="number"
-            value={quantity}
-            onChange={(e) => setQuantity(e.target.value)}
-          />
-        </div>
-        <div className="formGroup">
-          <label> Size: </label>
-          <input
-            type="text"
-            value={size}
-            onChange={(e) => setSize(e.target.value)}
-          />
-        </div>
-        <div className="formGroup">
-          <label> Brand: </label>
-          <input
-            type="text"
-            value={brand}
-            onChange={(e) => setBrand(e.target.value)}
-          />
-        </div>
-        <div className="formGroup">
-          <label> Description: </label>
-          <input
-            type="text"
-            value={description}
-            onChange={(e) => setDescription(e.target.value)}
-          />
-        </div>
-        <div className="formGroup">
-          <label> Reference: </label>
-          <input
-            type="text"
-            value={ref}
-            onChange={(e) => setRef(e.target.value)}
-          />
-        </div>
-        <div className="formGroup">
-          <label> Color: </label>
-          <input
-            type="text"
-            value={color}
-            onChange={(e) => setColor(e.target.value)}
-          />
-        </div>
-        <div className="formGroup">
-          <label> Date: </label>
-          <input
-            type="date"
-            value={date}
-            onChange={(e) => setDate(e.target.value)}
-          />
-        </div>
-        <div className="formGroup">
-          <button type="submit"> Add Product </button>
-        </div>
-      </form>
-      {error && <p className="errorMessage">{error}</p>}
-    </div>
+    <>
+      <div className="back">
+        <Link to="/" >
+          <img src={backImg} alt="Back Icon"></img>
+          BACK
+        </Link>
+      </div>
+      <div className="addProductContainer">
+        <h1 className="addProductTitle"> Add Product </h1>
+        <form onSubmit={procesarForm} className="addProductForm">
+          <div className="formGroup">
+            <label> Name: </label>
+            <input
+              type="text"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+            />
+          </div>
+          <div className="formGroup">
+            <label> Price: </label>
+            <input
+              type="number"
+              value={price}
+              onChange={(e) => setPrice(e.target.value)}
+            />
+          </div>
+          <div className="formGroup">
+            <label> Quantity: </label>
+            <input
+              type="number"
+              value={quantity}
+              onChange={(e) => setQuantity(e.target.value)}
+            />
+          </div>
+          <div className="formGroup">
+            <label> Size: </label>
+            <input
+              type="text"
+              value={size}
+              onChange={(e) => setSize(e.target.value)}
+            />
+          </div>
+          <div className="formGroup">
+            <label> Brand: </label>
+            <input
+              type="text"
+              value={brand}
+              onChange={(e) => setBrand(e.target.value)}
+            />
+          </div>
+          <div className="formGroup">
+            <label> Description: </label>
+            <input
+              type="text"
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
+            />
+          </div>
+          <div className="formGroup">
+            <label> Reference: </label>
+            <input
+              type="text"
+              value={ref}
+              onChange={(e) => setRef(e.target.value)}
+            />
+          </div>
+          <div className="formGroup">
+            <label> Color: </label>
+            <input
+              type="text"
+              value={color}
+              onChange={(e) => setColor(e.target.value)}
+            />
+          </div>
+          <div className="formGroup">
+            <label> Date: </label>
+            <input
+              type="date"
+              value={date}
+              onChange={(e) => setDate(e.target.value)}
+            />
+          </div>
+          <div className="formGroup">
+            <button type="submit"> Add Product </button>
+          </div>
+        </form>
+        {error && <p className="errorMessage">{error}</p>}
+      </div>
+    </>
   );
 };
