@@ -26,9 +26,8 @@ export const AvatarSection = () => {
     <div className="AvatarSection">
       <div>
         <h3>{user.username}</h3>
-        <p>Admin</p>
+        <button onClick={handleLogout}>Logout</button>
       </div>
-      <button onClick={handleLogout}>Logout</button>
       <div className="UserOptions"></div>
     </div>
   );

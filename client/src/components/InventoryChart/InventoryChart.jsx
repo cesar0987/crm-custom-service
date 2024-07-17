@@ -8,19 +8,19 @@ ChartJS.register(ArcElement, Tooltip, Legend);
 export const InventoryChart = () => {
   let data = [
     {
-      label: "Supplier 1",
+      label: "Product 1",
       value: 55,
       color: "rgba(0, 43, 73, 1)",
       cutout: "50%",
     },
     {
-      label: "Supplier 2",
+      label: "Product 2",
       value: 15,
       color: "rgba(0, 103, 160, 1)",
       cutout: "50%",
     },
     {
-      label: "Supplier 3",
+      label: "Product 3",
       value: 80,
       color: "rgba(83, 217, 217, 1)",
       cutout: "50%",

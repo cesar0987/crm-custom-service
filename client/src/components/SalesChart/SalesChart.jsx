@@ -8,19 +8,19 @@ ChartJS.register(ArcElement, Tooltip, Legend);
 export const SalesChart = () => {
   let data = [
     {
-      label: "Supplier 1",
+      label: "Most Sales 1",
       value: 55,
       color: "rgba(0, 43, 73, 1)",
       cutout: "50%",
     },
     {
-      label: "Supplier 2",
+      label: "Most Sales 2",
       value: 15,
       color: "rgba(0, 103, 160, 1)",
       cutout: "50%",
     },
     {
-      label: "Supplier 3",
+      label: "Most Sales 3",
       value: 80,
       color: "rgba(83, 217, 217, 1)",
       cutout: "50%",
