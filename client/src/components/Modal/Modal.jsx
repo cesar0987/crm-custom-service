@@ -13,8 +13,8 @@ const Modal = ({ show, onClose, onConfirm, children }) => {
           {children}
         </div>
         <div className="modal-actions">
-          <button className="modal-button-conf" onClick={onConfirm}>Confirmar</button>
-          <button className="modal-button-canc" onClick={onClose}>Cancelar</button>
+          <button className="modal-button-conf" onClick={onConfirm}>Confirm</button>
+          <button className="modal-button-canc" onClick={onClose}>Cancel</button>
         </div>
       </div>
     </div>

@@ -5,6 +5,8 @@ import { Link } from "react-router-dom";
 import axios from 'axios';
 import { SupliersSearchBar } from 'components/SupliersSearchBar/SupliersSearchBar';
 
+
+
 export const Supliers = ({removeFromDom}) => {
   const [supliers, setSuplier] = useState([]);
   const [loaded, setLoaded] = useState(true);
@@ -113,7 +115,7 @@ export const Supliers = ({removeFromDom}) => {
       <Modal show={showModal}
       onClose={() => setShowModal(false)}
       onConfirm={handleConfirmDelete}>
-      <p>¿Estás seguro de que deseas eliminar este proveedor?</p>
+      <p>¿Are you sure you want to remove this provider?</p>
       </Modal>
     </div>
   );

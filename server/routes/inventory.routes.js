@@ -13,4 +13,5 @@ module.exports = (app) => {
   app.put('/api/update/quantity', InventoryController.updateQuantity);
   app.get('/api/product/:id', InventoryController.getProductById);
   app.put('/api/update/product/:id', InventoryController.updateProduct);
+  app.delete('/api/delete/product/:id', InventoryController.deleteProduct);
 };

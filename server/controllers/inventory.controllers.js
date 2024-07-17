@@ -176,3 +176,9 @@ module.exports.updateProduct = async (req, res) => {
     res.status(500).json({ message: "Server error", error: err });
   }
 };
+
+module.exports.deleteProduct = (request, response)=>{
+  Product.deleteOne({_id: request.params.id})
+  .then(deleteProduct => response.json(deleteProduct))
+  .catch(err => response.json(err));
+} 
