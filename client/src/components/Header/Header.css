@@ -77,4 +77,39 @@
   display: flex;
   justify-content: center;
   gap: 20px;
+  
 }
+.searchResult {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.fixedWidthName, .fixedWidthLink {
+  width: 200px; /* Ajusta este valor según tus necesidades */
+  word-wrap: break-word; /* Para asegurar que el contenido se ajuste dentro de la celda */
+  padding-left: 10px;
+}
+
+.linkItem {
+  display: inline-block;
+  width: 100%;
+  height: 40px; /* Altura fija para todos los enlaces */
+  line-height: 40px; /* Para centrar verticalmente el texto dentro del enlace */
+  text-align: center;
+  background-color: #2c7bc9; /* Color de fondo opcional */
+  border-radius: 5px; /* Bordes redondeados opcional */
+  text-decoration: none; /* Eliminar subrayado por defecto */
+  color: #CED4D9; /* Color de texto */
+}
+
+.linkItem:hover {
+  background-color: #5d86ae; /* Cambiar color al pasar el cursor */
+}
+
+/* Cambio de estilo del overlay cuando el mouse está sobre el modal */
+.overlay:hover {
+  background-color: rgba(0, 0, 0, 0.7); /* Fondo más oscuro */
+}
+
