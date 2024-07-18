@@ -1,4 +1,9 @@
-import { AvatarSection, QuickActions, BarChart } from "components";
+import {
+  AvatarSection,
+  QuickActions,
+  BarChart,
+  SuplierChart,
+} from "components";
 import { useEffect, useState } from "react";
 import "./dashboard.css";
 
@@ -111,17 +116,17 @@ export const Dashboard = () => {
                 </tr>
               </thead>
               <tbody>
-                  {products
-                    .sort((a, b) => new Date(b.date) - new Date(a.date))
-                    .slice(0, 5)
-                    .map((product) => (
-                      <tr key={product.id}>
-                        <td>{product.name}</td>
-                        <td>{product.price}</td>
-                        <td>{product.quantity}</td>
-                        <td>{product.ref}</td>
-                      </tr>
-                    ))}
+                {products
+                  .sort((a, b) => new Date(b.date) - new Date(a.date))
+                  .slice(0, 5)
+                  .map((product) => (
+                    <tr key={product.id}>
+                      <td>{product.name}</td>
+                      <td>{product.price}</td>
+                      <td>{product.quantity}</td>
+                      <td>{product.ref}</td>
+                    </tr>
+                  ))}
               </tbody>
             </table>
           </div>
@@ -130,21 +135,7 @@ export const Dashboard = () => {
       <div className="rightPanel">
         <AvatarSection />
         <QuickActions />
-        <div className="FastMovingProducts">
-          <span>
-            <b>Fast Moving Products</b>
-          </span>
-          <table>
-            <thead>
-              <tr>
-                <th>Ref</th>
-                <th>Name</th>
-                <th>Price</th>
-                <th>Stock</th>
-              </tr>
-            </thead>
-          </table>
-        </div>
+        <SuplierChart />
       </div>
     </div>
   );

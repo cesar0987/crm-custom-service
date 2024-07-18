@@ -56,7 +56,7 @@ const App = () => {
             <Route path="/settings" element={<Settings />} />
             <Route path="*" element={<Dashboard />} />
             <Route path="/actualizar/supliers/:id" element={<SupliersEdit />} />
-            <Route path="/agregar/supliers" element={<SuplierForm/>}/>
+            <Route path="/agregar/supliers" element={<SuplierForm />} />
           </Route>
         </Routes>
       </Layout>

@@ -1,9 +1,13 @@
-
 import React, { useState, useEffect } from "react";
-import Next from "Assets/Next.svg"
-import Previous from "Assets/Previous.svg"
+import Next from "Assets/Next.svg";
+import Previous from "Assets/Previous.svg";
 import "./inventory.css";
-import { AvatarSection, InventorySearchBar, QuickActions } from "components";
+import {
+  AvatarSection,
+  InventoryChart,
+  InventorySearchBar,
+  QuickActions,
+} from "components";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import Modal from "components/Modal/Modal";
@@ -67,7 +71,6 @@ export const Inventory = ({removeFromDom}) => {
     fetchProducts();
   }, []);
 
-
   //
   const indexOfLastProduct = currentPage * productsPerPage;
   const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
@@ -123,7 +126,14 @@ export const Inventory = ({removeFromDom}) => {
                   <td>{product.quantity}</td>
                   <td className="buttons">
                     <div>
-                      <button  onClick={() => navigate(`/update-product/${product._id}`)} className="edit">Edit</button>
+                      <button
+                        onClick={() =>
+                          navigate(`/update-product/${product._id}`)
+                        }
+                        className="edit"
+                      >
+                        Edit
+                      </button>
                     </div>
                     <div>
                       <button className="delete" onClick={()=> handleDeleteClick(product._id)}>Delete</button>
@@ -139,14 +149,14 @@ export const Inventory = ({removeFromDom}) => {
           <div className="pagination">
             <button
               onClick={() => paginate(currentPage - 1)}
-              disabled={currentPage === 1} >
+              disabled={currentPage === 1}
+            >
               <img src={Previous} className="pages" alt="Previous" />
             </button>
             <button
               onClick={() => paginate(currentPage + 1)}
-              disabled={
-                currentPage === totalPages
-              } >
+              disabled={currentPage === totalPages}
+            >
               <img src={Next} className="pages" alt="Next" />
             </button>
           </div>
@@ -155,29 +165,7 @@ export const Inventory = ({removeFromDom}) => {
       <div className="rightPanel">
         <AvatarSection />
         <QuickActions />
-        <div className="recentActivity">
-          <span>
-            <b>Recent Activity</b>
-          </span>
-          <div className="actionDate">
-              <div className="details">
-                <h2 className="titles"> Action </h2>
-                {mostRecentActivity.map((product) => (
-                    <p key={product.ref} className="productsDetails">
-                      <h3 className="nameDetail">{product.name}</h3>
-                    </p>
-                  ))}
-              </div>
-              <div className="details">
-                <h2 className="titles"> Date </h2>
-                {mostRecentActivity.map((product) => (
-                <p key={product.ref} className="productsDetails">
-                  <h3 className="nameDetail">{formatDate(product.date)}</h3>
-                </p>
-                ))}
-              </div>
-          </div>
-        </div>
+        <InventoryChart />
       </div>
       <Modal show={showModal}
       onClose={() => setShowModal(false)}

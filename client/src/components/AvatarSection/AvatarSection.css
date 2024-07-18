@@ -8,6 +8,17 @@
   height: 105px;
   border: 1px solid gray;
   background-color: #ced4d9;
+  box-sizing: border-box;
+}
+.AvatarSection button {
+  width: 100px;
+  height: 30px;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  box-shadow: #444444 0px 0px 5px;
+  background-color: #2c7bc9;
+  color: white;
 }
 .UserOptions {
   width: 20px;

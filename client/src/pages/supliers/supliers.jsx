@@ -1,18 +1,21 @@
+
 import '../supliers/supliers.css'
 import Modal from 'components/Modal/Modal';
+import "../supliers/supliers.css";
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import axios from 'axios';
-import { SupliersSearchBar } from 'components/SupliersSearchBar/SupliersSearchBar';
+import { QuickActions, AvatarSection, SuplierChart } from "components";
+import axios from "axios";
+import { SupliersSearchBar } from "components/SupliersSearchBar/SupliersSearchBar";
 
 
-
-export const Supliers = ({removeFromDom}) => {
+export const Supliers = ({ removeFromDom }) => {
   const [supliers, setSuplier] = useState([]);
   const [loaded, setLoaded] = useState(true);
   const [error, setError] = useState(null);
   const [showModal, setShowModal] = useState(false);
   const [currentSupliersId, setCurrentSupliersId] = useState(null);
+
 
   const deleteSupliers = (suplierId)=>{
     axios.delete('http://localhost:8000/api/eliminar/supliers/' +suplierId)
@@ -36,7 +39,7 @@ export const Supliers = ({removeFromDom}) => {
     setShowModal(null);
     setCurrentSupliersId(null);
   }
-    
+ 
   useEffect(() => {
     const fetchSupliers = async () => {
       try {
@@ -57,7 +60,6 @@ export const Supliers = ({removeFromDom}) => {
       } finally {
         setLoaded(false);
       }
-
     };
 
     fetchSupliers();

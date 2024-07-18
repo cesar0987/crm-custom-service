@@ -7,7 +7,7 @@ import Next from "Assets/Next.svg";
 import Previous from "Assets/Previous.svg";
 import logo from "Assets/Logo.png";
 import "./modal.css";
-import { AvatarSection, QuickActions } from "components";
+import { AvatarSection, QuickActions, SalesChart } from "components";
 
 export const SalesOrder = () => {
   const [products, setProducts] = useState([]);
@@ -97,23 +97,17 @@ export const SalesOrder = () => {
     });
 
     // Agregar fila de total al final de la tabla
-    const totalRow = [
-      "",
-      "",
-      "",
-      "Total:",
-      formatPrice(total),
-    ];
+    const totalRow = ["", "", "", "Total:", formatPrice(total)];
     tableRows.push(totalRow);
 
     // Añadir rectángulo azul oscuro detrás del encabezado
     doc.setFillColor(0, 51, 102); // Establecer color azul oscuro
-    doc.rect(0, 0, doc.internal.pageSize.width, 20, 'F'); // Dibujar rectángulo desde (0, 0) hasta el ancho de la página con altura 20
+    doc.rect(0, 0, doc.internal.pageSize.width, 20, "F"); // Dibujar rectángulo desde (0, 0) hasta el ancho de la página con altura 20
 
-    doc.addImage(logo, 'png', 140, 2, 40, 15);
-    doc.setFont('custom', 'bold');
+    doc.addImage(logo, "png", 140, 2, 40, 15);
+    doc.setFont("custom", "bold");
     doc.setFontSize(10);
-    doc.setTextColor('white');
+    doc.setTextColor("white");
     doc.text("RUC: 123456", 10, 8);
     doc.text("Timbrado: 1155789", 10, 12);
     doc.text("Inicio de vigencia: 05/07/2024", 10, 16);
@@ -121,32 +115,24 @@ export const SalesOrder = () => {
     doc.text("Encarnación - Paraguay", 60, 12);
     doc.text("www.manceg.com.py", 60, 16);
 
-   
-  
-
     // Generar la tabla y obtener la posición final de la misma
     const startY = 25; // Ajusta esta posición según sea necesario
     doc.autoTable(tableColumn, tableRows, { startY });
 
     // Obtener la ubicación final de la tabla
     const endY = doc.autoTable.previous.finalY;
-    const totalY = endY - startY; 
+    const totalY = endY - startY;
 
-     // Mostrar los datos del modal en el PDF
-     doc.setFillColor(0, 51, 102);
-     doc.rect(0, 40 + totalY, doc.internal.pageSize.width, 20, 'F');
-     doc.setFont('custom', 'bold');
-     doc.setFontSize(12);
-     doc.setTextColor('white'); 
-     doc.text(`Fecha de Emisión: ${emissionDate}`, 15, 45 + totalY);
-     doc.text(`Razón Social: ${businessName}`, 15, 55 + totalY);
-     doc.text(`RUC: ${ruc}`, 85, 45 + totalY);
-     doc.text(`Dirección: ${address}`, 85, 55 + totalY);
-    
-    
-    
-
-    
+    // Mostrar los datos del modal en el PDF
+    doc.setFillColor(0, 51, 102);
+    doc.rect(0, 40 + totalY, doc.internal.pageSize.width, 20, "F");
+    doc.setFont("custom", "bold");
+    doc.setFontSize(12);
+    doc.setTextColor("white");
+    doc.text(`Fecha de Emisión: ${emissionDate}`, 15, 45 + totalY);
+    doc.text(`Razón Social: ${businessName}`, 15, 55 + totalY);
+    doc.text(`RUC: ${ruc}`, 85, 45 + totalY);
+    doc.text(`Dirección: ${address}`, 85, 55 + totalY);
 
     // Guardar el PDF
     doc.save(`emitido el ${emissionDate} factura de ${businessName}.pdf`);
@@ -156,8 +142,27 @@ export const SalesOrder = () => {
 
     // Actualizar el stock en el servidor
     updateStock();
+    console.log("Selected Products:", selectedProducts);
+    setSales(selectedProducts);
   };
-
+  const setSales = async (newSale) => {
+    try {
+      const response = await fetch("http://localhost:8000/api/create/sales", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(newSale),
+      });
+      if (!response.ok) {
+        throw new Error("Error creating sale");
+      }
+      const data = await response.json();
+      console.log("New Sale:", data);
+    } catch (error) {
+      console.log("Failed to create sale:", error);
+    }
+  };
   const updateStock = async () => {
     const updatedProducts = selectedProducts.map((product) => ({
       _id: product._id,
@@ -183,6 +188,8 @@ export const SalesOrder = () => {
     } catch (error) {
       console.log("Failed to update stock:", error);
     }
+
+    // Agregar los productos comprados a la base de datos de ventas
   };
 
   const subtractPurchasedProduct = (product, value) => {
@@ -292,6 +299,7 @@ export const SalesOrder = () => {
       <div className="rightPanel">
         <AvatarSection />
         <QuickActions />
+        <SalesChart />
       </div>
 
       {/* Modal para la factura */}

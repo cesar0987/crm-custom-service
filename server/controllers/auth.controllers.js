@@ -16,17 +16,26 @@ module.exports.register = (req, res) => {
 
 module.exports.login = (req, res) => {
   const { email, password } = req.body;
+
   User.findOne({ email })
     .then((user) => {
       if (!user) {
         return res.status(400).json({ message: "Invalid email or password" });
       }
+
       bcrypt.compare(password, user.password).then((isMatch) => {
         if (!isMatch) {
           return res.status(400).json({ message: "Invalid email or password" });
         }
-        const token = jwt.sign({ id: user._id }, "secret", { expiresIn: "1h" });
-        res.json({ token });
+
+        // Extract the username from the user object
+        const { username, _id } = user;
+
+        // Generate the JWT token
+        const token = jwt.sign({ id: _id }, "secret", { expiresIn: "1h" });
+
+        // Return the username and token in the response
+        res.json({ username, token });
       });
     })
     .catch((err) => res.status(400).json(err));
