@@ -174,6 +174,7 @@ export const Header = () => {
               Search
             </button>
             <Modal
+            
               isOpen={modalIsOpen}
               onRequestClose={closeModal}
               contentLabel="Bill Information"
