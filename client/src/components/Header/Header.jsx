@@ -8,7 +8,7 @@ import ArFlag from "../../Assets/argentina.svg";
 import Modal from "react-modal";
 
 const flags = [UsFlag, BrFlag, ArFlag];
-const currencyNames = ["USD", "EUR", "ARS"];
+const currencyNames = ["USD", "R$", "ARS"];
 
 export const Header = () => {
   const location = useLocation();
