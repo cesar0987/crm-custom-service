@@ -2,30 +2,59 @@ import "./SalesChart.css";
 import React from "react";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import { Doughnut } from "react-chartjs-2";
+import { useEffect, useState } from "react";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 export const SalesChart = () => {
-  let data = [
-    {
-      label: "Most Sales 1",
-      value: 55,
-      color: "rgba(0, 43, 73, 1)",
-      cutout: "50%",
-    },
-    {
-      label: "Most Sales 2",
-      value: 15,
-      color: "rgba(0, 103, 160, 1)",
-      cutout: "50%",
-    },
-    {
-      label: "Most Sales 3",
-      value: 80,
-      color: "rgba(83, 217, 217, 1)",
-      cutout: "50%",
-    },
-  ];
+  const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  const dataCatch = async () => {
+    try {
+      const response = await fetch("http://localhost:8000/api/products", {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      const data = await response.json();
+      setProducts(data);
+      if (!response.ok) {
+        throw new Error("Something went wrong");
+      }
+    } catch (error) {
+      setError(error.message);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    dataCatch();
+  }, []);
+
+  //Guardar la cantidad de productos segun su nombre si su cantidad es cero se mostrara en el grafico
+  let productCount = {};
+  products.forEach((product) => {
+    if (productCount[product.name]) {
+      productCount[product.name] += 1;
+    } else {
+      productCount[product.name] = 1;
+    }
+  });
+
+  console.log("PRODUCT COUNT", productCount);
+  let data = [];
+  for (const key in productCount) {
+    data.push({
+      label: key,
+      value: productCount[key],
+      color: "#" + Math.floor(Math.random() * 16777215).toString(16),
+      cutout: 70,
+    });
+  }
 
   const options = {
     plugins: {

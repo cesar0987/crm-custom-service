@@ -2,7 +2,7 @@ import {
   AvatarSection,
   QuickActions,
   BarChart,
-  SuplierChart,
+  InventoryChart,
 } from "components";
 import { useEffect, useState } from "react";
 import "./dashboard.css";
@@ -135,7 +135,7 @@ export const Dashboard = () => {
       <div className="rightPanel">
         <AvatarSection />
         <QuickActions />
-        <SuplierChart />
+        <InventoryChart />
       </div>
     </div>
   );
