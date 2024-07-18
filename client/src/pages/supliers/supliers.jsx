@@ -1,5 +1,5 @@
 import "../supliers/supliers.css";
-
+import Modal from "components/Modal/Modal";
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { QuickActions, AvatarSection } from "components";
@@ -10,6 +10,8 @@ export const Supliers = ({ removeFromDom }) => {
   const [supliers, setSuplier] = useState([]);
   const [loaded, setLoaded] = useState(true);
   const [error, setError] = useState(null);
+  const [showModal, setShowModal] = useState(false);
+  const [currentSupliersId, setCurrentSupliersId] = useState(null);
 
   const deleteSupliers = (suplierId) => {
     axios
@@ -23,6 +25,17 @@ export const Supliers = ({ removeFromDom }) => {
       })
       .catch((error) => console.error("Error al eliminar proveedor", error));
   };
+
+  const handleDeleteClick = (suplierId) =>{
+    setCurrentSupliersId(suplierId);
+    setShowModal(true);
+  }
+
+  const handleConfirmDelete = () =>{
+    deleteSupliers(currentSupliersId);
+    setShowModal(null);
+    setCurrentSupliersId(null);
+  }
 
   useEffect(() => {
     const fetchSupliers = async () => {
@@ -93,7 +106,7 @@ export const Supliers = ({ removeFromDom }) => {
 
                       <button
                         className="delete-button"
-                        onClick={() => deleteSupliers(suplier._id)}
+                        onClick={() => handleDeleteClick(suplier._id)}
                       >
                         Delete
                       </button>
@@ -109,6 +122,11 @@ export const Supliers = ({ removeFromDom }) => {
         <AvatarSection />
         <QuickActions />
       </div>
+      <Modal show={showModal}
+      onClose={() => setShowModal(false)}
+      onConfirm={handleConfirmDelete}>
+      <p>¿Are you sure you want to delete this provider?</p>
+      </Modal>
     </div>
   );
 };
