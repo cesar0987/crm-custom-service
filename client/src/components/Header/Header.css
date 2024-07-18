@@ -112,7 +112,6 @@
   display: flex;
   justify-content: center;
   gap: 20px;
-  
 }
 .searchResult {
   display: flex;
@@ -121,7 +120,8 @@
   margin-top: 10px;
 }
 
-.fixedWidthName, .fixedWidthLink {
+.fixedWidthName,
+.fixedWidthLink {
   width: 200px; /* Ajusta este valor según tus necesidades */
   word-wrap: break-word; /* Para asegurar que el contenido se ajuste dentro de la celda */
   padding-left: 10px;
@@ -136,7 +136,7 @@
   background-color: #2c7bc9; /* Color de fondo opcional */
   border-radius: 5px; /* Bordes redondeados opcional */
   text-decoration: none; /* Eliminar subrayado por defecto */
-  color: #CED4D9; /* Color de texto */
+  color: #ced4d9; /* Color de texto */
 }
 
 .linkItem:hover {
@@ -145,9 +145,8 @@
 
 /* Cambio de estilo del overlay cuando el mouse está sobre el modal */
 .overlay:hover {
-  background-color: rgba(0, 0, 0, 0.947);/* Fondo más oscuro */
+  background-color: rgba(0, 0, 0, 0.947); /* Fondo más oscuro */
 }
-
 
 /* Header.css */
 
@@ -171,11 +170,15 @@
 }
 
 .modal {
-  background: white;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #ced0d3;
   padding: 20px;
-  border-radius: 8px;
-  max-width: 500px;
-  width: 100%;
-  z-index: 1001; /* Asegura que el modal esté por encima del overlay */
+  border-radius: 5px;
+  z-index: 1000;
+  width: 30%;
+  height: 80%;
+  overflow: auto;
 }
-
