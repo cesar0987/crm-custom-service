@@ -55,9 +55,15 @@ const App = () => {
             <Route path="/editar/supliers" element={<SupliersEdit />} />
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/inventory" element={<Inventory />} />
-            <Route path="/salesorder" element={<SalesOrder addProductSelected={addProductSelected} />} />
+            <Route
+              path="/salesorder"
+              element={<SalesOrder addProductSelected={addProductSelected} />}
+            />
             <Route path="/supliers" element={<Supliers />} />
-            <Route path="/reports" element={<Reports selectedProducts={productSelected} />} />
+            <Route
+              path="/reports"
+              element={<Reports selectedProducts={productSelected} />}
+            />
             <Route path="/help" element={<Help />} />
             <Route path="/settings" element={<Settings />} />
             <Route path="*" element={<Dashboard />} />
