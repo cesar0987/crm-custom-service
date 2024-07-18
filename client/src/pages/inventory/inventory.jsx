@@ -9,14 +9,42 @@ import {
   QuickActions,
 } from "components";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import Modal from "components/Modal/Modal";
 
-export const Inventory = () => {
+export const Inventory = ({removeFromDom}) => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
   const [productsPerPage] = useState(12);
   const navigate = useNavigate();
+  const [showModal, setShowModal] = useState(false);
+  const [currentProductId, setCurrentProductId] = useState(null);
+
+  const deleteProduct = (productId)=>{
+    axios.delete('http://localhost:8000/api/delete/product/' +productId)
+    .then(res =>{
+      if(removeFromDom){
+        removeFromDom(productId);
+      }else{
+        setProducts(products.filter(product => product._id !== productId));
+      }
+    })
+    .catch(error => console.error('Error al eliminar producto', error))
+  }
+
+  const handleDeleteClick = (productId) =>{
+    setCurrentProductId(productId);
+    setShowModal(true);
+  }
+
+  const handleConfirmDelete = () =>{
+    deleteProduct(currentProductId);
+    setShowModal(null);
+    setCurrentProductId(null);
+  }
+    
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -77,7 +105,7 @@ export const Inventory = () => {
   return (
     <div className="inventoryContainer">
       <div className="leftPanel">
-        <InventorySearchBar />
+        <InventorySearchBar setSearchResultados={setProducts} />
         <div className="productList">
           <table>
             <thead>
@@ -108,7 +136,7 @@ export const Inventory = () => {
                       </button>
                     </div>
                     <div>
-                      <button className="delete">Delete</button>
+                      <button className="delete" onClick={()=> handleDeleteClick(product._id)}>Delete</button>
                     </div>
                   </td>
                 </tr>
@@ -139,6 +167,11 @@ export const Inventory = () => {
         <QuickActions />
         <InventoryChart />
       </div>
+      <Modal show={showModal}
+      onClose={() => setShowModal(false)}
+      onConfirm={handleConfirmDelete}>
+      <p>¿Are you sure you want to delete this product??</p>
+      </Modal>
     </div>
   );
 };

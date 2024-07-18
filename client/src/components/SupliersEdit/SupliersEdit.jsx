@@ -126,7 +126,7 @@ export const SupliersEdit=  () => {
                 />
             </p>
             <div className="cont">
-            <button type="submit">Update Suppliers</button>
+            <button type="submit">Update</button>
             <Link to='/supliers'>
             <button type="submit" id="btnCancelar">Cancel</button>
             </Link>
