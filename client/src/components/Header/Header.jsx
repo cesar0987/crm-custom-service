@@ -57,11 +57,11 @@ export const Header = () => {
       ".titleChangesMonetary"
     );
     if (imgElement && imgElement.alt === "ARS Flag") {
-      titleChangesMonetaryElement.style.gap = "142px";
+      titleChangesMonetaryElement.style.gap = " 50px";
     } else if (imgElement && imgElement.alt === "USD Flag") {
       titleChangesMonetaryElement.style.gap = "105px";
     } else {
-      titleChangesMonetaryElement.style.gap = "160px";
+      titleChangesMonetaryElement.style.gap = "100px";
     }
   }, [currentIndex]);
 
