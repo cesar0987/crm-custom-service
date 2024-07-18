@@ -3,13 +3,17 @@ import { useLocation, Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import Logo from "../../Assets/Logo.png";
 import UsFlag from "../../Assets/estados unidos.svg";
-import BrFlag from "../../Assets/Brazil.svg";
+
+
+// Asegúrate de que las banderas estén en el orden correcto correspondiente a currencyNames
+
+import BrFlag from "../../Assets/Bandera Brasil.png";
 import ArFlag from "../../Assets/argentina.svg";
 import Modal from "react-modal";
 
-// Asegúrate de que las banderas estén en el orden correcto correspondiente a currencyNames
 const flags = [UsFlag, BrFlag, ArFlag];
-const currencyNames = ["USD", "BRL", "ARS"];
+const currencyNames = ["USD", "R$", "ARS"];
+
 
 export const Header = () => {
   const location = useLocation();
@@ -55,7 +59,7 @@ export const Header = () => {
     if (imgElement && imgElement.alt === "ARS Flag") {
       titleChangesMonetaryElement.style.gap = "142px";
     } else if (imgElement && imgElement.alt === "USD Flag") {
-      titleChangesMonetaryElement.style.gap = "165px";
+      titleChangesMonetaryElement.style.gap = "105px";
     } else {
       titleChangesMonetaryElement.style.gap = "160px";
     }
@@ -162,7 +166,11 @@ export const Header = () => {
       <form onSubmit={handleSubmit}>
         {location.pathname === "/" ? (
           <>
-            <button type="button" onClick={openModal}>
+            <button
+              type="button"
+              onClick={openModal}
+              className="btn btn-primary"
+            >
               Search
             </button>
             <Modal

@@ -6,22 +6,32 @@ import axios from "axios";
 
 export const SupliersSearchBar = ({setSearchResultados}) => {
   const [consulta, setConsulta]= useState('');
+  const [message, setMessage] = useState('');
+  
 
 const handleSearch = async (e) =>{
   e.preventDefault();
   try{
     const respuesta = await axios.get(`http://localhost:8000/api/supliers/search?name=${consulta}`)
     setSearchResultados(respuesta.data);
+    setMessage('');
   } catch(err){
-    console.error("Error when searching for supplier",err);
+    if(err.response && err.response.status === 404){
+      setMessage('Supplier not found');
+    } else{
+      setMessage('Enter the provider name');
+    }
+   
+    
   }
+
 }
 
 
   return (
     <div className="searchBar1">
       <div className="searchBarContain1">
-        <span>Supliers</span>
+        <span>Suppliers</span>
         <form class="max-w-md mx-auto" onSubmit={handleSearch}>
           <label
             for="default-search"
@@ -62,7 +72,9 @@ const handleSearch = async (e) =>{
             >
               Search
             </button>
-          
+          </div>
+          <div>
+          {message && <p className="message-text">{message}</p>}
           </div>
         </form>
         <Link to='/agregar/supliers'>
@@ -74,6 +86,7 @@ const handleSearch = async (e) =>{
         </button>
         </Link>
       </div>
+      
     </div>
   );
 };

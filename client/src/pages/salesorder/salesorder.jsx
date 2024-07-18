@@ -7,7 +7,7 @@ import Next from "Assets/Next.svg";
 import Previous from "Assets/Previous.svg";
 import logo from "Assets/Logo.png";
 import "./modal.css";
-import { AvatarSection, QuickActions } from "components";
+import { AvatarSection, QuickActions} from "components";
 
 export const SalesOrder = ({addProductSelected}) => {
   const [products, setProducts] = useState([]);

@@ -1,18 +1,50 @@
-
 import React, { useState, useEffect } from "react";
-import Next from "Assets/Next.svg"
-import Previous from "Assets/Previous.svg"
+import Next from "Assets/Next.svg";
+import Previous from "Assets/Previous.svg";
 import "./inventory.css";
-import { AvatarSection, InventorySearchBar, QuickActions } from "components";
+import {
+  AvatarSection,
+  InventoryChart,
+  InventorySearchBar,
+  QuickActions,
+} from "components";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import Modal from "components/Modal/Modal";
 
-export const Inventory = () => {
+export const Inventory = ({removeFromDom}) => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
   const [productsPerPage] = useState(12);
   const navigate = useNavigate();
+  const [showModal, setShowModal] = useState(false);
+  const [currentProductId, setCurrentProductId] = useState(null);
+
+  const deleteProduct = (productId)=>{
+    axios.delete('http://localhost:8000/api/delete/product/' +productId)
+    .then(res =>{
+      if(removeFromDom){
+        removeFromDom(productId);
+      }else{
+        setProducts(products.filter(product => product._id !== productId));
+      }
+    })
+    .catch(error => console.error('Error al eliminar producto', error))
+  }
+
+  const handleDeleteClick = (productId) =>{
+    setCurrentProductId(productId);
+    setShowModal(true);
+  }
+
+  const handleConfirmDelete = () =>{
+    deleteProduct(currentProductId);
+    setShowModal(null);
+    setCurrentProductId(null);
+  }
+    
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -38,7 +70,6 @@ export const Inventory = () => {
 
     fetchProducts();
   }, []);
-
 
   //
   const indexOfLastProduct = currentPage * productsPerPage;
@@ -74,7 +105,7 @@ export const Inventory = () => {
   return (
     <div className="inventoryContainer">
       <div className="leftPanel">
-        <InventorySearchBar />
+        <InventorySearchBar setSearchResultados={setProducts} />
         <div className="productList">
           <table>
             <thead>
@@ -95,10 +126,17 @@ export const Inventory = () => {
                   <td>{product.quantity}</td>
                   <td className="buttons">
                     <div>
-                      <button  onClick={() => navigate(`/update-product/${product._id}`)} className="edit">Edit</button>
+                      <button
+                        onClick={() =>
+                          navigate(`/update-product/${product._id}`)
+                        }
+                        className="edit"
+                      >
+                        Edit
+                      </button>
                     </div>
                     <div>
-                      <button className="delete">Delete</button>
+                      <button className="delete" onClick={()=> handleDeleteClick(product._id)}>Delete</button>
                     </div>
                   </td>
                 </tr>
@@ -111,14 +149,14 @@ export const Inventory = () => {
           <div className="pagination">
             <button
               onClick={() => paginate(currentPage - 1)}
-              disabled={currentPage === 1} >
+              disabled={currentPage === 1}
+            >
               <img src={Previous} className="pages" alt="Previous" />
             </button>
             <button
               onClick={() => paginate(currentPage + 1)}
-              disabled={
-                currentPage === totalPages
-              } >
+              disabled={currentPage === totalPages}
+            >
               <img src={Next} className="pages" alt="Next" />
             </button>
           </div>
@@ -127,30 +165,13 @@ export const Inventory = () => {
       <div className="rightPanel">
         <AvatarSection />
         <QuickActions />
-        <div className="recentActivity">
-          <span>
-            <b>Recent Activity</b>
-          </span>
-          <div className="actionDate">
-              <div className="details">
-                <h2 className="titles"> Action </h2>
-                {mostRecentActivity.map((product) => (
-                    <p key={product.ref} className="productsDetails">
-                      <h3 className="nameDetail">{product.name}</h3>
-                    </p>
-                  ))}
-              </div>
-              <div className="details">
-                <h2 className="titles"> Date </h2>
-                {mostRecentActivity.map((product) => (
-                <p key={product.ref} className="productsDetails">
-                  <h3 className="nameDetail">{formatDate(product.date)}</h3>
-                </p>
-                ))}
-              </div>
-          </div>
-        </div>
+        <InventoryChart />
       </div>
+      <Modal show={showModal}
+      onClose={() => setShowModal(false)}
+      onConfirm={handleConfirmDelete}>
+      <p>¿Are you sure you want to delete this product??</p>
+      </Modal>
     </div>
   );
 };

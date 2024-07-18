@@ -1,6 +1,24 @@
 const Product = require("../models/inventory.models");
 const moment = require("moment");
 
+exports.searchProduct = async (req, res) => {
+  try {
+    const name = req.query.name.trim(); // Limpia la entrada
+    if(!name){
+      return res.status(400).json({message: 'El nombre del producto es requerido'})
+    }
+    // Verifica que se esté buscando por 'name' y no por '_id'
+    const product = await Product.find({ name: { $regex: name, $options: 'i' } });
+    if(product.length === 0){
+      return res.status(400).json({message: 'El producto no fue encontrado'});
+    }
+    res.json(product);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+};
+
+
 module.exports.getAllProducts = (req, res) => {
   Product.find()
     .then((allProducts) => {
@@ -158,3 +176,9 @@ module.exports.updateProduct = async (req, res) => {
     res.status(500).json({ message: "Server error", error: err });
   }
 };
+
+module.exports.deleteProduct = (request, response)=>{
+  Product.deleteOne({_id: request.params.id})
+  .then(deleteProduct => response.json(deleteProduct))
+  .catch(err => response.json(err));
+} 

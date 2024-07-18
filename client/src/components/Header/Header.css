@@ -3,13 +3,24 @@
   background-color: white;
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
   display: flex;
-  height: 80px;
+  height: 90px;
   justify-content: space-between;
   align-items: center;
   flex-direction: row;
   padding: 0px 20px;
   width: 100%;
   border: 1px solid #ced4d9;
+}
+.btn {
+  background-color: #2c7bc9;
+  color: white;
+  border: none;
+  padding: 9px;
+  border-radius: 7px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 5px;
 }
 
 .headerContainer .headerTitle {
@@ -41,39 +52,63 @@
   padding: 0;
 }
 
-/*Estilos en el cambio de monedas*/
+/* Estilos en el cambio de monedas */
+.headerChangesMonetary {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+}
+
+.titleChangesMonetary {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  background-color: #ced4d9;
+  padding: 3px;
+  border-radius: 5px;
+}
+
+.titleChangesMonetary p {
+  font-size: 14px;
+  font-weight: bold;
+  color: #2c7bc9;
+  margin: 0 10px;
+}
+
 .headerExchange {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 100px;
-  margin-top: 20px;
+  gap: 20px;
+  background-color: #e0e0e0;
+  padding: 5px;
+  border-radius: 5px;
 }
 
-.purchase, .sale {
+.purchase,
+.sale {
   transition: opacity 0.5s ease-in-out;
-  background-color: #ced4d9;
+  background-color: #f5f5f5;
+  padding: 5px;
+  border-radius: 5px;
 }
 
-
-.purchase p, .sale p {
+.purchase p,
+.sale p {
   display: flex;
   align-items: center;
-  font-size: 20px;
-  
+  font-size: 14px;
+  margin: 0;
 }
 
-.usFlag, .euFlag, .arFlag {
-  height: 16px;
-  margin: 0 5px;
-}
-.titleChangesMonetary{
-  display: flex;
-  background-color: #CED4D9;
+.flag {
+  height: 20px;
+  margin-right: 5px;
 }
 
-/*Estilo modal*/
-.buttons-modal{
+/* Estilo modal */
+.buttons-modal {
   display: flex;
   justify-content: center;
   gap: 20px;

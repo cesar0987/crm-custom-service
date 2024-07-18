@@ -31,10 +31,10 @@ export const Nav = () => {
           <img src={supliersImg} alt="Supliers Icon" />
           <Link to="/supliers">Supliers</Link>
         </li>
-        <li>
+        {/* <li>
           <img src={reportsImg} alt="Report Icon" />
           <Link to="/reports">Reports</Link>
-        </li>
+        </li> */}
       </ul>
     </nav>
   );
