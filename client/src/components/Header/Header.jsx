@@ -3,11 +3,11 @@ import { useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 import Logo from "../../Assets/Logo.png";
 import UsFlag from "../../Assets/estados unidos.svg";
-import EuFlag from "../../Assets/union europea.svg";
+import BrFlag from "../../Assets/Bandera Brasil.png";
 import ArFlag from "../../Assets/argentina.svg";
 import Modal from "react-modal";
 
-const flags = [UsFlag, EuFlag, ArFlag];
+const flags = [UsFlag, BrFlag, ArFlag];
 const currencyNames = ["USD", "EUR", "ARS"];
 
 export const Header = () => {
