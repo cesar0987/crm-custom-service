@@ -84,7 +84,7 @@ export const Dashboard = () => {
             {currencyFormat(calculateTotalSales())}
           </span>
           <span>
-            <b>Net Income</b>
+            <b>Assets</b>
             {currencyFormat(calculateNetIncome())}
           </span>
           <span>
