@@ -57,7 +57,9 @@ export const Header = () => {
 
   useEffect(() => {
     const searchGeneral = async () => {
-      const response = await fetch("http://localhost:8000/api/products");
+      const response = await fetch(
+        "https://crm-custom-service.onrender.com/api/products"
+      );
       const data = await response.json();
       setProduct(data);
       console.log("dato productos", data);

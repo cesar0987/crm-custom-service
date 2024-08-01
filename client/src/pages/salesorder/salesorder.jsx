@@ -26,12 +26,15 @@ export const SalesOrder = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await fetch("http://localhost:8000/api/products", {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-          },
-        });
+        const response = await fetch(
+          "https://crm-custom-service.onrender.com/api/products",
+          {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+        );
         if (!response.ok) {
           throw new Error("Something went wrong");
         }
@@ -147,13 +150,16 @@ export const SalesOrder = () => {
   };
   const setSales = async (newSale) => {
     try {
-      const response = await fetch("http://localhost:8000/api/create/sales", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(newSale),
-      });
+      const response = await fetch(
+        "https://crm-custom-service.onrender.com/api/create/sales",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(newSale),
+        }
+      );
       if (!response.ok) {
         throw new Error("Error creating sale");
       }
@@ -171,7 +177,7 @@ export const SalesOrder = () => {
 
     try {
       const response = await fetch(
-        "http://localhost:8000/api/update/quantity",
+        "https://crm-custom-service.onrender.com/api/update/quantity",
         {
           method: "PUT",
           headers: {

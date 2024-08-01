@@ -1,13 +1,11 @@
-
-import '../supliers/supliers.css'
-import Modal from 'components/Modal/Modal';
+import "../supliers/supliers.css";
+import Modal from "components/Modal/Modal";
 import "../supliers/supliers.css";
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { QuickActions, AvatarSection, SuplierChart } from "components";
 import axios from "axios";
 import { SupliersSearchBar } from "components/SupliersSearchBar/SupliersSearchBar";
-
 
 export const Supliers = ({ removeFromDom }) => {
   const [supliers, setSuplier] = useState([]);
@@ -16,40 +14,46 @@ export const Supliers = ({ removeFromDom }) => {
   const [showModal, setShowModal] = useState(false);
   const [currentSupliersId, setCurrentSupliersId] = useState(null);
 
+  const deleteSupliers = (suplierId) => {
+    axios
+      .delete(
+        "https://crm-custom-service.onrender.com/api/eliminar/supliers/" +
+          suplierId
+      )
+      .then((res) => {
+        if (removeFromDom) {
+          removeFromDom(suplierId);
+        } else {
+          setSuplier(supliers.filter((suplier) => suplier._id !== suplierId));
+        }
+      })
+      .catch((error) => console.error("Error al eliminar proveedor", error));
+  };
 
-  const deleteSupliers = (suplierId)=>{
-    axios.delete('http://localhost:8000/api/eliminar/supliers/' +suplierId)
-    .then(res =>{
-      if(removeFromDom){
-        removeFromDom(suplierId);
-      }else{
-        setSuplier(supliers.filter(suplier => suplier._id !== suplierId));
-      }
-    })
-    .catch(error => console.error('Error al eliminar proveedor', error))
-  }
-
-  const handleDeleteClick = (suplierId) =>{
+  const handleDeleteClick = (suplierId) => {
     setCurrentSupliersId(suplierId);
     setShowModal(true);
-  }
+  };
 
-  const handleConfirmDelete = () =>{
+  const handleConfirmDelete = () => {
     deleteSupliers(currentSupliersId);
     setShowModal(null);
     setCurrentSupliersId(null);
-  }
- 
+  };
+
   useEffect(() => {
     const fetchSupliers = async () => {
       try {
         setLoaded(true);
-        const response = await fetch("http://localhost:8000/api/supliers", {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-          },
-        });
+        const response = await fetch(
+          "https://crm-custom-service.onrender.com/api/supliers",
+          {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+        );
         const data = await response.json();
         setSuplier(data);
         if (!response.ok) {
@@ -101,23 +105,28 @@ export const Supliers = ({ removeFromDom }) => {
               <td>{suplier.sitioWep}</td>
               <td>
                 <div className="table-buttons">
-              <Link to={`/actualizar/supliers/${suplier._id}`}>
-              <button className="edit-button">Edit</button>
-              </Link>
-              
-                <button className='delete-button' onClick={()=> handleDeleteClick(suplier._id)}>
-                  Delete
-                </button>
-              </div>
+                  <Link to={`/actualizar/supliers/${suplier._id}`}>
+                    <button className="edit-button">Edit</button>
+                  </Link>
+
+                  <button
+                    className="delete-button"
+                    onClick={() => handleDeleteClick(suplier._id)}
+                  >
+                    Delete
+                  </button>
+                </div>
               </td>
             </tr>
           ))}
         </tbody>
       </table>
-      <Modal show={showModal}
-      onClose={() => setShowModal(false)}
-      onConfirm={handleConfirmDelete}>
-      <p>¿Are you sure you want to remove this provider?</p>
+      <Modal
+        show={showModal}
+        onClose={() => setShowModal(false)}
+        onConfirm={handleConfirmDelete}
+      >
+        <p>¿Are you sure you want to remove this provider?</p>
       </Modal>
     </div>
   );

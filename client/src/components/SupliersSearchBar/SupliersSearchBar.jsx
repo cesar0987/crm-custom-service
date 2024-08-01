@@ -1,32 +1,28 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import '../SupliersSearchBar/SupliersSearchBar.css';
+import "../SupliersSearchBar/SupliersSearchBar.css";
 import axios from "axios";
 
+export const SupliersSearchBar = ({ setSearchResultados }) => {
+  const [consulta, setConsulta] = useState("");
+  const [message, setMessage] = useState("");
 
-export const SupliersSearchBar = ({setSearchResultados}) => {
-  const [consulta, setConsulta]= useState('');
-  const [message, setMessage] = useState('');
-  
-
-const handleSearch = async (e) =>{
-  e.preventDefault();
-  try{
-    const respuesta = await axios.get(`http://localhost:8000/api/supliers/search?name=${consulta}`)
-    setSearchResultados(respuesta.data);
-    setMessage('');
-  } catch(err){
-    if(err.response && err.response.status === 404){
-      setMessage('Supplier not found');
-    } else{
-      setMessage('Enter the provider name');
+  const handleSearch = async (e) => {
+    e.preventDefault();
+    try {
+      const respuesta = await axios.get(
+        `https://crm-custom-service.onrender.com/api/supliers/search?name=${consulta}`
+      );
+      setSearchResultados(respuesta.data);
+      setMessage("");
+    } catch (err) {
+      if (err.response && err.response.status === 404) {
+        setMessage("Supplier not found");
+      } else {
+        setMessage("Enter the provider name");
+      }
     }
-   
-    
-  }
-
-}
-
+  };
 
   return (
     <div className="searchBar1">
@@ -64,7 +60,6 @@ const handleSearch = async (e) =>{
               value={consulta}
               onChange={(e) => setConsulta(e.target.value)}
               placeholder="Search providers by name"
-              
             />
             <button
               type="submit"
@@ -73,20 +68,17 @@ const handleSearch = async (e) =>{
               Search
             </button>
           </div>
-          <div>
-          {message && <p className="message-text">{message}</p>}
-          </div>
+          <div>{message && <p className="message-text">{message}</p>}</div>
         </form>
-        <Link to='/agregar/supliers'>
-        <button
-          type="button"
-          class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
-        >
-          New Suppliers
-        </button>
+        <Link to="/agregar/supliers">
+          <button
+            type="button"
+            class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
+          >
+            New Suppliers
+          </button>
         </Link>
       </div>
-      
     </div>
   );
 };

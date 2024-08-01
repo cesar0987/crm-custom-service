@@ -1,23 +1,25 @@
 import React from "react";
 import "./InventorySearchBar.css";
 import { Link } from "react-router-dom";
-import { useState} from "react";
+import { useState } from "react";
 import axios from "axios";
 
-export const InventorySearchBar = ({setSearchResultados}) => {
-  const [consulta, setConsulta] = useState('');
-  const [message, setMessage] = useState('');
+export const InventorySearchBar = ({ setSearchResultados }) => {
+  const [consulta, setConsulta] = useState("");
+  const [message, setMessage] = useState("");
 
   const handleSearch = async (e) => {
     e.preventDefault();
     try {
-      const respuesta = await axios.get(`http://localhost:8000/api/products/search?name=${consulta}`)
+      const respuesta = await axios.get(
+        `https://crm-custom-service.onrender.com/api/products/search?name=${consulta}`
+      );
       setSearchResultados(respuesta.data);
-      setMessage('');
-    } catch(err){
-      setMessage('The product was not found');
+      setMessage("");
+    } catch (err) {
+      setMessage("The product was not found");
     }
-  }
+  };
 
   return (
     <div className="searchBar">
@@ -50,8 +52,8 @@ export const InventorySearchBar = ({setSearchResultados}) => {
               </svg>
             </div>
             <input
-            value={consulta}
-            onChange={(e) => setConsulta(e.target.value)}
+              value={consulta}
+              onChange={(e) => setConsulta(e.target.value)}
               type="search"
               id="default-search"
               class="block w-80 p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
@@ -64,9 +66,8 @@ export const InventorySearchBar = ({setSearchResultados}) => {
               Search
             </button>
           </div>
-       
-            {message && <p className="message-text">{message}</p>}
-          
+
+          {message && <p className="message-text">{message}</p>}
         </form>
         <Link to="/addProduct">
           <button

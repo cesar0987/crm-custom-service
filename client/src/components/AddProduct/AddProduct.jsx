@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useNavigate, useParams, Link } from "react-router-dom";
 import "./AddProduct.css";
 import { AvatarSection, InventorySearchBar, QuickActions } from "components";
-import backImg from "../../Assets/back.png"
+import backImg from "../../Assets/back.png";
 
 export const AddProduct = ({ addProduct }) => {
   const [name, setName] = useState("");
@@ -23,7 +23,9 @@ export const AddProduct = ({ addProduct }) => {
     if (id) {
       const fetchProduct = async () => {
         try {
-          const response = await fetch(`http://localhost:8000/api/product/${id}`);
+          const response = await fetch(
+            `https://crm-custom-service.onrender.com/api/product/${id}`
+          );
           const data = await response.json();
           setName(data.name);
           setPrice(data.price);
@@ -47,8 +49,8 @@ export const AddProduct = ({ addProduct }) => {
     e.preventDefault();
     const method = id ? "PUT" : "POST";
     const URL = id
-      ? `http://localhost:8000/api/update/product/${id}`
-      : "http://localhost:8000/api/create/product";
+      ? `https://crm-custom-service.onrender.com/api/update/product/${id}`
+      : "https://crm-custom-service.onrender.com/api/create/product";
     const configuracion = {
       method,
       headers: {
@@ -107,7 +109,7 @@ export const AddProduct = ({ addProduct }) => {
   return (
     <>
       <div className="back">
-        <Link to="/" >
+        <Link to="/">
           <img src={backImg} alt="Back Icon"></img>
           BACK
         </Link>

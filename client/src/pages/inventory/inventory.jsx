@@ -12,7 +12,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import Modal from "components/Modal/Modal";
 
-export const Inventory = ({removeFromDom}) => {
+export const Inventory = ({ removeFromDom }) => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -22,40 +22,46 @@ export const Inventory = ({removeFromDom}) => {
   const [showModal, setShowModal] = useState(false);
   const [currentProductId, setCurrentProductId] = useState(null);
 
-  const deleteProduct = (productId)=>{
-    axios.delete('http://localhost:8000/api/delete/product/' +productId)
-    .then(res =>{
-      if(removeFromDom){
-        removeFromDom(productId);
-      }else{
-        setProducts(products.filter(product => product._id !== productId));
-      }
-    })
-    .catch(error => console.error('Error al eliminar producto', error))
-  }
+  const deleteProduct = (productId) => {
+    axios
+      .delete(
+        "https://crm-custom-service.onrender.com/api/delete/product/" +
+          productId
+      )
+      .then((res) => {
+        if (removeFromDom) {
+          removeFromDom(productId);
+        } else {
+          setProducts(products.filter((product) => product._id !== productId));
+        }
+      })
+      .catch((error) => console.error("Error al eliminar producto", error));
+  };
 
-  const handleDeleteClick = (productId) =>{
+  const handleDeleteClick = (productId) => {
     setCurrentProductId(productId);
     setShowModal(true);
-  }
+  };
 
-  const handleConfirmDelete = () =>{
+  const handleConfirmDelete = () => {
     deleteProduct(currentProductId);
     setShowModal(null);
     setCurrentProductId(null);
-  }
-    
+  };
 
   useEffect(() => {
     const fetchProducts = async () => {
       try {
         setLoading(true);
-        const response = await fetch("http://localhost:8000/api/products", {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-          },
-        });
+        const response = await fetch(
+          "https://crm-custom-service.onrender.com/api/products",
+          {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+        );
         const data = await response.json();
         setProducts(data);
         if (!response.ok) {
@@ -136,7 +142,12 @@ export const Inventory = ({removeFromDom}) => {
                       </button>
                     </div>
                     <div>
-                      <button className="delete" onClick={()=> handleDeleteClick(product._id)}>Delete</button>
+                      <button
+                        className="delete"
+                        onClick={() => handleDeleteClick(product._id)}
+                      >
+                        Delete
+                      </button>
                     </div>
                   </td>
                 </tr>
@@ -167,10 +178,12 @@ export const Inventory = ({removeFromDom}) => {
         <QuickActions />
         <InventoryChart />
       </div>
-      <Modal show={showModal}
-      onClose={() => setShowModal(false)}
-      onConfirm={handleConfirmDelete}>
-      <p>¿Are you sure you want to delete this product??</p>
+      <Modal
+        show={showModal}
+        onClose={() => setShowModal(false)}
+        onConfirm={handleConfirmDelete}
+      >
+        <p>¿Are you sure you want to delete this product??</p>
       </Modal>
     </div>
   );

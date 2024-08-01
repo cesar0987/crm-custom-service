@@ -16,10 +16,13 @@ export const Login = ({ setIsAuthenticated }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post("http://localhost:8000/api/login", {
-        email,
-        password,
-      });
+      const res = await axios.post(
+        "https://crm-custom-service.onrender.com/api/login",
+        {
+          email,
+          password,
+        }
+      );
       cookies.set("token", res.data.token, { maxAge: 3600 });
       cookies.set("user", res.data.username, { maxAge: 3600 });
 

@@ -1,16 +1,16 @@
-import { useState } from 'react';
-import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { useState } from "react";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 import imgLogin from "../../Assets/Logo.png";
 import imgBackground from "../../Assets/BG.png";
 
-import "./register.css"
+import "./register.css";
 
 export const Register = () => {
-  const [username, setUsername] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
   const [errors, setErrors] = useState({});
   const navigate = useNavigate();
 
@@ -19,13 +19,13 @@ export const Register = () => {
     const newErrors = {};
 
     if (username.length < 3) {
-      newErrors.username = 'Username must be at least 3 characters long';
-    } else if (!/^[a-zA-Z0-9]+$/.test(username)) { 
-      newErrors.username = 'Username can only contain alphanumeric characters';
+      newErrors.username = "Username must be at least 3 characters long";
+    } else if (!/^[a-zA-Z0-9]+$/.test(username)) {
+      newErrors.username = "Username can only contain alphanumeric characters";
     }
 
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-      newErrors.email = 'Please enter a valid email address';
+      newErrors.email = "Please enter a valid email address";
     }
 
     /* if (password.length < 6) {
@@ -42,11 +42,14 @@ export const Register = () => {
 
     if (Object.keys(newErrors).length === 0) {
       try {
-        await axios.post('http://localhost:8000/api/register', { username, email, password, confirmPassword });
-        navigate('/login');
+        await axios.post(
+          "https://crm-custom-service.onrender.com/api/register",
+          { username, email, password, confirmPassword }
+        );
+        navigate("/login");
       } catch (err) {
         console.error(err);
-        alert('Error registering user');
+        alert("Error registering user");
       }
     }
   };
@@ -60,21 +63,25 @@ export const Register = () => {
       />
       <div className="registerContainer">
         <img src={imgLogin} alt="Imagen Login" className="logo" />
-        <form onSubmit={handleSubmit} className="formContainer" >
+        <form onSubmit={handleSubmit} className="formContainer">
           <div className="inputContainer">
             <input
               type="text"
               placeholder="Username"
               value={username}
-              onChange={(e) => setUsername(e.target.value)} />
-            {errors.username && <div className="error"> {errors.username} </div>}
+              onChange={(e) => setUsername(e.target.value)}
+            />
+            {errors.username && (
+              <div className="error"> {errors.username} </div>
+            )}
           </div>
           <div className="inputContainer">
             <input
               type="email"
               placeholder="Email"
               value={email}
-              onChange={(e) => setEmail(e.target.value)} />
+              onChange={(e) => setEmail(e.target.value)}
+            />
             {errors.email && <div className="error"> {errors.email} </div>}
           </div>
           <div className="inputContainer">
@@ -82,19 +89,28 @@ export const Register = () => {
               type="password"
               placeholder="Password"
               value={password}
-              onChange={(e) => setPassword(e.target.value)} />
-            {errors.password && <div className="error"> {errors.password} </div>}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+            {errors.password && (
+              <div className="error"> {errors.password} </div>
+            )}
           </div>
           <div className="inputContainer">
             <input
               type="password"
               placeholder="Confirm Password"
               value={confirmPassword}
-              onChange={(e) => setConfirmPassword(e.target.value)} />
-            {errors.confirmPassword && <div className="error"> {errors.confirmPassword} </div>}
+              onChange={(e) => setConfirmPassword(e.target.value)}
+            />
+            {errors.confirmPassword && (
+              <div className="error"> {errors.confirmPassword} </div>
+            )}
           </div>
           <div className="buttonContainer">
-            <button type="submit" className="register"> REGISTER </button>
+            <button type="submit" className="register">
+              {" "}
+              REGISTER{" "}
+            </button>
           </div>
         </form>
       </div>
