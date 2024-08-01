@@ -1,5 +1,6 @@
+require("dotenv").config();
 const mongoose = require("mongoose");
-URI = "mongodb://localhost:27017/inventory_project";
+URI = process.env.MONGODB_URI;
 
 if (URI === undefined) {
   console.log("Please define the MONGODB_URI in the .env file");
