@@ -7,9 +7,9 @@ import Next from "Assets/Next.svg";
 import Previous from "Assets/Previous.svg";
 import logo from "Assets/Logo.png";
 import "./modal.css";
-import { AvatarSection, QuickActions, SalesChart } from "components";
+import { AvatarSection, QuickActions} from "components";
 
-export const SalesOrder = () => {
+export const SalesOrder = ({addProductSelected}) => {
   const [products, setProducts] = useState([]);
   const [selectedProducts, setSelectedProducts] = useState([]);
   const [purchased, setPurchased] = useState({});
@@ -46,11 +46,14 @@ export const SalesOrder = () => {
 
   const handleCheckboxChange = (product) => {
     setSelectedProducts((prevSelectedProducts) => {
+      let updatedProducts;
       if (prevSelectedProducts.some((p) => p._id === product._id)) {
-        return prevSelectedProducts.filter((p) => p._id !== product._id);
+        updatedProducts = prevSelectedProducts.filter((p) => p._id !== product._id);
       } else {
-        return [...prevSelectedProducts, product];
+        updatedProducts = [...prevSelectedProducts, product];
       }
+      addProductSelected(updatedProducts);
+      return updatedProducts;
     });
   };
 
@@ -299,7 +302,6 @@ export const SalesOrder = () => {
       <div className="rightPanel">
         <AvatarSection />
         <QuickActions />
-        <SalesChart />
       </div>
 
       {/* Modal para la factura */}
